@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 400" width="1280" height="400" role="img" aria-labelledby="heroTitle heroDesc">
+  <title id="heroTitle">StudyForge — 本地优先的个人学习工作站</title>
+  <desc id="heroDesc">深蓝底色的横幅：左侧是 StudyForge 字标与一句定位，下方一条证据轨道穿过今天、规划、学习、回看、系统五个工作域。</desc>
+
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#12304F"/>
+      <stop offset="0.55" stop-color="#173A5C"/>
+      <stop offset="1" stop-color="#1D4A73"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.18" cy="0.22" r="0.75">
+      <stop offset="0" stop-color="#FBFAF7" stop-opacity="0.10"/>
+      <stop offset="1" stop-color="#FBFAF7" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="rail" gradientUnits="userSpaceOnUse" x1="72" y1="308" x2="1208" y2="308">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.45"/>
+      <stop offset="0.62" stop-color="#FFFFFF" stop-opacity="0.70"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0.35"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1280" height="400" fill="url(#bg)"/>
+  <rect width="1280" height="400" fill="url(#glow)"/>
+
+  <g fill="none" stroke="#FFFFFF" stroke-opacity="0.085">
+    <circle cx="1128" cy="74" r="300"/>
+    <circle cx="1128" cy="74" r="214"/>
+    <circle cx="1128" cy="74" r="132"/>
+  </g>
+
+  <g font-family="'Trebuchet MS','Segoe UI','Microsoft YaHei',sans-serif">
+    <rect x="72" y="58" width="46" height="6" fill="#EFC25A"/>
+    <text x="72" y="140" font-size="74" font-weight="700" fill="#FBFAF7" letter-spacing="-1.2">StudyForge</text>
+    <text x="74" y="180" font-size="20" fill="#A9BED4" font-family="'Microsoft YaHei','PingFang SC','Noto Sans SC','Segoe UI',sans-serif">本地优先的个人学习工作站</text>
+    <text x="74" y="209" font-size="12" fill="#7191B0" letter-spacing="3.2">LOCAL-FIRST · SINGLE USER · EVIDENCE-DRIVEN</text>
+  </g>
+
+  <line x1="72" y1="308" x2="1208" y2="308" stroke="url(#rail)" stroke-width="2.5"/>
+
+  <g stroke="#FFFFFF" stroke-opacity="0.20" stroke-width="2">
+    <line x1="214" y1="301" x2="214" y2="315"/>
+    <line x1="498" y1="301" x2="498" y2="315"/>
+    <line x1="782" y1="301" x2="782" y2="315"/>
+    <line x1="1066" y1="301" x2="1066" y2="315"/>
+  </g>
+
+  <g font-family="'Cascadia Mono',Consolas,'Segoe UI Mono',monospace">
+    <text x="72" y="270" font-size="12" fill="#8FA9C4" letter-spacing="2" text-anchor="middle">01</text>
+    <text x="356" y="270" font-size="12" fill="#8FA9C4" letter-spacing="2" text-anchor="middle">02</text>
+    <text x="640" y="270" font-size="12" fill="#8FA9C4" letter-spacing="2" text-anchor="middle">03</text>
+    <text x="924" y="270" font-size="12" fill="#8FA9C4" letter-spacing="2" text-anchor="middle">04</text>
+    <text x="1208" y="270" font-size="12" fill="#8FA9C4" letter-spacing="2" text-anchor="middle">05</text>
+  </g>
+
+  <g>
+    <circle cx="72" cy="308" r="7" fill="#FBFAF7"/>
+    <circle cx="356" cy="308" r="7" fill="#FBFAF7"/>
+    <circle cx="640" cy="308" r="9" fill="#EFC25A"/>
+    <circle cx="640" cy="308" r="15" fill="none" stroke="#EFC25A" stroke-opacity="0.35" stroke-width="1.5"/>
+    <circle cx="924" cy="308" r="7" fill="#FBFAF7"/>
+    <circle cx="1208" cy="308" r="7" fill="#FBFAF7"/>
+  </g>
+
+  <g font-family="'Microsoft YaHei','PingFang SC','Noto Sans SC','Segoe UI',sans-serif" font-size="19" fill="#DCE7F1" text-anchor="middle">
+    <text x="72" y="352">今天</text>
+    <text x="356" y="352">规划</text>
+    <text x="640" y="352" fill="#FFFFFF">学习</text>
+    <text x="924" y="352">回看</text>
+    <text x="1208" y="352">系统</text>
+  </g>
+</svg>
