@@ -66,3 +66,40 @@ def test_cloud_fallback_marks_observability(monkeypatch):
     assert result.success is True
     assert result.fallback_used is True
     assert result.provider == "zhiapi"
+
+
+def test_cloud_only_structured_daily_log_skips_local(monkeypatch):
+    from app.config import settings
+
+    monkeypatch.setattr(settings, "model_routing_mode", "cloud_only")
+    monkeypatch.setattr(settings, "cloud_model_enabled", True)
+    monkeypatch.setattr(settings, "cloud_model_api_key", "secret")
+    router = ModelRouter()
+    router.local.structured_log = lambda *_args, **_kwargs: pytest.fail("local structured provider must not be called")
+
+    payload = {"topics": ["Python"], "duration_minutes": None, "outputs": [], "understood": [], "unresolved_questions": [], "self_assessment": None}
+    router.cloud._post = lambda *args, **kwargs: httpx.Response(200, json={"choices": [{"message": {"content": json.dumps(payload)}}]})
+
+    result = router.parse_daily_log("学习 Python")
+
+    assert result.success is True
+    assert result.provider == "zhiapi"
+    assert result.data["topics"] == ["Python"]
+
+
+def test_cloud_only_run_structured_uses_cloud_provider(monkeypatch):
+    from app.config import settings
+
+    monkeypatch.setattr(settings, "model_routing_mode", "cloud_only")
+    monkeypatch.setattr(settings, "cloud_model_enabled", True)
+    monkeypatch.setattr(settings, "cloud_model_api_key", "secret")
+    router = ModelRouter()
+    router.local.structured_output = lambda *_args, **_kwargs: pytest.fail("local structured provider must not be called")
+    payload = {"topics": ["Python"]}
+    router.cloud._post = lambda *args, **kwargs: httpx.Response(200, json={"choices": [{"message": {"content": json.dumps(payload)}}]})
+
+    result = router.run_structured("daily_log", "学习 Python", {"topics"})
+
+    assert result.success is True
+    assert result.provider == "zhiapi"
+    assert result.data == payload

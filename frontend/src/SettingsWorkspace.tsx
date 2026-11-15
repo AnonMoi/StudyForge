@@ -116,6 +116,8 @@ export default function SettingsWorkspace({ onNotice, onError }: Props) {
     ? "所有模型任务只在本地执行，不会升级到云端。"
     : form.model_routing_mode === "cloud_confirmed"
       ? "本地模型先执行；需要升级到云端时，必须先得到你的确认。"
+      : form.model_routing_mode === "cloud_only"
+        ? "所有任务直接使用云端；高风险任务仍需确认，并继续受云端开关、预算和数据保护策略约束。"
       : "本地模型先执行；只有本地失败或超时后，才会按权限与预算尝试云端。";
 
   return <div className="settings-workspace">
@@ -130,7 +132,7 @@ export default function SettingsWorkspace({ onNotice, onError }: Props) {
 
       <div className="model-routing-grid">
         <label>本地模型名称<input className="sf-field" value={form.local_model_name} onChange={event => update("local_model_name", event.target.value)} /></label>
-        <label>路由方式<select className="sf-field" value={form.model_routing_mode} onChange={event => update("model_routing_mode", event.target.value)}><option value="local_only">仅使用本地模型</option><option value="local_first">本地优先，失败或超时后升级</option><option value="cloud_confirmed">云端升级前必须确认</option></select></label>
+        <label>路由方式<select className="sf-field" value={form.model_routing_mode} onChange={event => update("model_routing_mode", event.target.value)}><option value="local_only">仅使用本地模型</option><option value="local_first">本地优先，失败或超时后升级</option><option value="cloud_confirmed">云端升级前必须确认</option><option value="cloud_only">所有任务使用云端</option></select></label>
         <p className="routing-explanation">{routingDescription}</p>
         <label>云端模型名称<input className="sf-field" value={form.cloud_model_name} onChange={event => update("cloud_model_name", event.target.value)} /></label>
         <label className="setup-toggle-row"><input type="checkbox" checked={form.cloud_model_enabled} onChange={event => update("cloud_model_enabled", event.target.checked)} /><span><strong>允许云端模型参与路由</strong><small>仍受确认策略、调用次数与费用上限约束。</small></span></label>
@@ -161,7 +163,7 @@ export default function SettingsWorkspace({ onNotice, onError }: Props) {
         <button type="button" className="text-button" disabled={busy || !settings?.native_notifications_available || !form.native_notifications_enabled} onClick={() => void testNativeNotifications()}>发送测试通知</button>
       </details>
 
-      <div className="setup-action-row"><span>{settings?.cloud_key_masked ?? (settings?.cloud_key_configured ? "云端密钥已配置" : "云端密钥未配置")}</span><button className="primary-button" onClick={() => void save()} disabled={busy || !form.local_model_name.trim() || !form.cloud_model_name.trim()}>{busy ? "保存中…" : "保存模型设置"}</button></div>
+      <div className="setup-action-row"><span>{settings?.cloud_key_masked ?? (settings?.cloud_key_configured ? "云端密钥已配置" : "云端密钥未配置")}</span><button className="primary-button" onClick={() => void save()} disabled={busy || (!form.local_model_name.trim() && form.model_routing_mode !== "cloud_only") || !form.cloud_model_name.trim()}>{busy ? "保存中…" : "保存模型设置"}</button></div>
     </section>
 
     <section id="encrypted-sync" className="setup-section sync-settings-panel sf-open-section">

@@ -53,10 +53,11 @@ flowchart LR
 | `local_only` | 只使用本地 provider，不向云端升级 |
 | `local_first` | 默认模式；适用任务先尝试本地，只有符合隐私、预算和失败类型条件的任务才允许回退云端 |
 | `cloud_confirmed` | 需要云端升级的任务必须先经过确认；不等于所有任务强制走云端 |
+| `cloud_only` | 所有任务直接使用云端；高风险任务仍需确认，并继续受云端开关、预算和数据保护策略约束 |
 
 任务策略仍会区分低风险结构化任务、中风险讲解/规划任务和需要确认的高风险任务。云端调用默认关闭；文件云端分析必须经过前端「预览 → 确认」；最终出站前会脱敏常见密钥、邮箱和手机号并按正文上限裁剪；每日调用次数与费用受限。文件云端分析不发送原始绝对路径。Agent 对学习计划的结构化修改必须经过「预览 → 确认 → 执行」。
 
-如果用户没有本地模型，可以只配置云端服务；但当前版本没有把「所有任务统一切换到云端」的单独路由开关，未被任务策略允许升级的本地任务会使用确定性降级或返回可恢复错误。不要把填写云端配置误解为自动改变所有任务的隐私边界。
+如果用户没有本地模型，或不想使用本地模型，可以只配置云端服务并选择 `cloud_only`。该模式让所有任务直接走云端；高风险任务仍需确认。云端未配置、关闭或超预算时会返回可恢复错误，不会静默回退到本地。不要把填写云端配置误解为自动改变路由模式。
 
 <details>
 <summary><b>配置模型服务（可选，3 步）</b></summary>
@@ -76,7 +77,7 @@ CLOUD_MODEL_BASE_URL=https://your-provider.example/v1
 CLOUD_MODEL_NAME=your-cloud-model
 CLOUD_MODEL_API_KEY=your-cloud-api-key
 
-# local_only、local_first 或 cloud_confirmed
+# local_only、local_first、cloud_confirmed 或 cloud_only
 MODEL_ROUTING_MODE=local_first
 ```
 
@@ -208,7 +209,7 @@ sequenceDiagram
 - 后端错误统一返回 `error.code`、`error.message`、`error.status`、`error.request_id`，同时保留兼容字段 `detail`；Pydantic 校验错误和未处理异常也经过统一处理。
 - 每个请求接收或生成 `X-Request-ID`，响应回传同一 ID；请求日志为结构化 JSON，包含方法、路径、状态、耗时和 request_id；响应附带基础安全头。
 - 前端统一 API 层提供 `ApiError`、状态码映射以及网络/5xx 各一次的有限重试。
-- `/api/settings/public` 只返回 `cloud_key_configured`，不会向浏览器返回任何 Key 片段。
+- `/api/settings/public` 会返回模型名称、路由模式、云端启用状态和 `cloud_key_configured` 等非敏感运行信息，不会返回真实 API key 或 key 片段。
 
 </details>
 

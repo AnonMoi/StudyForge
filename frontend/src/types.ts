@@ -285,7 +285,7 @@ export type RuntimeStatus = {
 
 export type PublicSettings = {
   cloud_key_masked?: string;
-  model_routing_mode?: "local_only" | "local_first" | "cloud_confirmed" | string;
+  model_routing_mode?: "local_only" | "local_first" | "cloud_confirmed" | "cloud_only" | string;
   cloud_enabled: boolean;
   local_model: string;
   cloud_model: string;
