@@ -1,0 +1,294 @@
+/* Hallmark · pre-emit critique: P5 H5 E5 S5 R5 V5 */
+/* Hallmark · macrostructure: Journal Stream / Continuous Folio · theme: studied-DNA (source: home-workstation-b.png + DESIGN.md) · nav: N3 task rail · footer: none · contrast: pass (40–41) · slop: pass (42–45) · honest: pass (46) · chrome: pass (47) · tokens: pass (48) · responsive: pass (49) · icons: pass (30) · mobile: pass (34, 49, 50–57) */
+.studyforge-shell .journal-workspace {
+  display: grid;
+  gap: var(--space-xl);
+}
+
+.studyforge-shell .journal-editor-heading time {
+  display: block;
+  margin-top: var(--space-3xs);
+  color: var(--color-ink-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-variant-numeric: tabular-nums;
+}
+
+.studyforge-shell .journal-editor-heading > p {
+  max-width: 30rem;
+  text-align: right;
+}
+
+.studyforge-shell .journal-writing-form { display: grid; }
+
+.studyforge-shell .journal-writing-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.studyforge-shell .journal-writing-form > textarea {
+  --sf-field-content-min-height: 7.5rem;
+  box-sizing: border-box;
+  width: 100%;
+  font: var(--text-md)/1.75 var(--font-body);
+}
+
+.studyforge-shell .journal-editor-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  margin-top: var(--space-xs);
+}
+
+.studyforge-shell .journal-preservation-note {
+  min-width: 0;
+  color: var(--color-ink-2);
+  font-size: var(--text-xs);
+  line-height: 1.5;
+}
+
+.studyforge-shell button.journal-organize-button {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  width: fit-content;
+  max-width: 100%;
+}
+
+.studyforge-shell .journal-anna-avatar {
+  width: 1.75rem;
+  height: 1.75rem;
+  overflow: hidden;
+  border: var(--rule-thin) solid var(--color-rule);
+  border-radius: var(--radius-xs);
+  background: var(--color-paper-2);
+  opacity: 0.88;
+}
+
+.studyforge-shell .journal-anna-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 24%;
+}
+
+.studyforge-shell .journal-review-sheet {
+  margin-top: var(--space-md);
+}
+
+.studyforge-shell .journal-review-sheet .log-review-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding-bottom: var(--space-sm);
+}
+
+.studyforge-shell .journal-review-sheet .log-review-heading strong {
+  color: var(--text-primary);
+  font-size: var(--text-md);
+}
+
+.studyforge-shell .journal-review-sheet .log-review-heading p {
+  margin: var(--space-3xs) 0 0;
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+}
+
+.studyforge-shell .journal-review-sheet .log-review-heading span {
+  flex: 0 0 auto;
+  color: var(--text-muted);
+  font-size: var(--text-xs);
+}
+
+.studyforge-shell .journal-review-sheet > label,
+.studyforge-shell .journal-review-sheet .journal-review-fields label {
+  display: grid;
+  gap: var(--space-2xs);
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+}
+
+.studyforge-shell .journal-review-sheet > label { margin-top: var(--space-md); }
+
+.studyforge-shell .journal-review-sheet .journal-review-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-sm);
+  margin-top: var(--space-sm);
+}
+
+.studyforge-shell .journal-review-sheet .journal-review-fields textarea {
+  --sf-field-content-min-height: 5.75rem;
+  line-height: 1.65;
+}
+
+.studyforge-shell .journal-review-sheet .journal-review-duration { align-self: start; }
+.studyforge-shell .journal-review-sheet .journal-review-self-assessment { grid-column: 1 / -1; }
+
+.studyforge-shell .journal-timeline { position: relative; }
+.studyforge-shell .journal-timeline-heading {
+  position: relative;
+  align-items: flex-end;
+  padding: 0 0 var(--space-xs) calc(var(--space-lg) + var(--space-2xs));
+  border-bottom: 0;
+}
+
+.studyforge-shell .journal-timeline-heading::before {
+  position: absolute;
+  top: var(--space-2xs);
+  left: var(--space-2xs);
+  width: var(--space-2xs);
+  height: var(--space-2xs);
+  content: "";
+  background: var(--color-surface);
+  border: var(--rule-thin) solid var(--color-structure-2);
+  border-radius: 50%;
+  box-shadow: 0 0 0 var(--space-3xs) var(--color-paper);
+}
+
+.studyforge-shell .journal-timeline-heading > .sf-surface-metadata {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.studyforge-shell .journal-stream { position: relative; border: 0; }
+.studyforge-shell .journal-stream::before,
+.studyforge-shell .journal-empty::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--space-2xs);
+  width: var(--rule-thin);
+  content: "";
+  background: var(--color-rule-strong);
+}
+
+.studyforge-shell .journal-empty::before {
+  bottom: auto;
+  height: var(--space-lg);
+}
+
+.studyforge-shell .journal-entry {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--space-lg) 7rem minmax(0, 1fr) auto;
+  gap: var(--space-sm);
+  padding: var(--space-md) 0;
+  border-bottom: var(--rule-thin) solid var(--color-rule);
+  transition: background-color var(--dur-short) var(--ease-out);
+}
+
+.studyforge-shell .journal-entry:hover,
+.studyforge-shell .journal-entry:focus-within { background: color-mix(in oklch, var(--color-paper-2) 42%, transparent); }
+
+.studyforge-shell .journal-entry-marker {
+  position: relative;
+  z-index: 1;
+  align-self: start;
+  justify-self: start;
+  width: var(--space-2xs);
+  height: var(--space-2xs);
+  margin-top: var(--space-2xs);
+  margin-left: var(--space-3xs);
+  border: var(--rule-thin) solid var(--color-structure-2);
+  border-radius: 50%;
+  background: var(--color-surface);
+  box-shadow: 0 0 0 var(--space-3xs) var(--color-paper);
+}
+
+.studyforge-shell .journal-entry .journal-entry-date {
+  color: var(--color-ink-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+}
+.studyforge-shell .journal-entry .journal-entry-date small { margin-top: var(--space-3xs); color: var(--color-ink-2); font-size: var(--text-xs); }
+
+.studyforge-shell .journal-entry .journal-entry-content h3 {
+  margin: 0 0 var(--space-3xs);
+  color: var(--color-ink);
+  font-size: var(--text-md);
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+.studyforge-shell .journal-entry .journal-entry-content p {
+  max-width: 68ch;
+  margin: 0;
+  color: var(--color-ink-2);
+  line-height: 1.7;
+  white-space: pre-wrap;
+}
+.studyforge-shell .journal-entry .journal-entry-content > small { margin-top: var(--space-2xs); color: var(--color-ink-2); }
+
+.studyforge-shell .journal-entry-actions { display: flex; align-items: center; gap: var(--space-xs); }
+.studyforge-shell .journal-empty {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--space-lg) minmax(0, 1fr);
+  gap: var(--space-sm);
+  min-height: 0;
+  padding: var(--space-md) 0 var(--space-sm);
+}
+
+.studyforge-shell .journal-empty-origin {
+  position: relative;
+  z-index: 1;
+  width: var(--space-2xs);
+  height: var(--space-2xs);
+  margin-top: var(--space-2xs);
+  margin-left: var(--space-3xs);
+  border: var(--rule-thin) solid var(--color-rule-strong);
+  border-radius: 50%;
+  background: var(--color-surface);
+  box-shadow: 0 0 0 var(--space-3xs) var(--color-paper);
+}
+
+.studyforge-shell .journal-empty strong { color: var(--color-ink-2); font-size: var(--text-sm); font-weight: 650; }
+.studyforge-shell .journal-empty p {
+  max-width: 46ch;
+  margin: var(--space-3xs) 0 var(--space-xs);
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+  line-height: 1.65;
+}
+
+@media (max-width: 760px) {
+  .studyforge-shell .journal-workspace { gap: var(--space-lg); }
+  .studyforge-shell .journal-editor-footer { align-items: stretch; flex-direction: column; }
+  .studyforge-shell .journal-editor-heading > p { text-align: left; }
+  .studyforge-shell .journal-writing-form > textarea { --sf-field-content-min-height: 10rem; }
+  .studyforge-shell .journal-organize-button { align-self: flex-start; }
+  .studyforge-shell .journal-review-sheet .journal-review-fields { grid-template-columns: 1fr; }
+  .studyforge-shell .journal-review-sheet .journal-review-self-assessment { grid-column: auto; }
+  .studyforge-shell .journal-review-sheet .log-review-heading { display: block; }
+  .studyforge-shell .journal-review-sheet .log-review-heading span { display: block; margin-top: var(--space-xs); }
+  .studyforge-shell .journal-review-sheet .form-footer { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .studyforge-shell .journal-review-sheet .form-footer .sf-button--primary { grid-column: 1 / -1; }
+  .studyforge-shell .journal-review-sheet .form-footer > button { width: 100%; min-width: 0; }
+  .studyforge-shell .journal-timeline-heading { align-items: flex-start; padding-left: calc(var(--space-lg) + var(--space-2xs)); }
+  .studyforge-shell .journal-entry { grid-template-columns: var(--space-lg) minmax(0, 1fr); gap: var(--space-2xs) var(--space-sm); }
+  .studyforge-shell .journal-entry-marker { grid-column: 1; grid-row: 1; }
+  .studyforge-shell .journal-entry .journal-entry-date,
+  .studyforge-shell .journal-entry .journal-entry-content,
+  .studyforge-shell .journal-entry-actions { grid-column: 2; }
+  .studyforge-shell .journal-entry .journal-entry-date { grid-row: 1; display: flex; align-items: baseline; gap: var(--space-2xs); }
+  .studyforge-shell .journal-entry .journal-entry-date small { margin: 0; }
+  .studyforge-shell .journal-entry .journal-entry-content { grid-row: 2; }
+  .studyforge-shell .journal-entry-actions { grid-row: 3; justify-content: space-between; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .studyforge-shell .journal-writing-form > textarea,
+  .studyforge-shell .journal-entry { transition-duration: 0.01ms; }
+}

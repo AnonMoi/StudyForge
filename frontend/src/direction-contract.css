@@ -1,0 +1,2655 @@
+/* Hallmark · pre-emit critique: P5 H5 E4 S5 R5 V4 */
+/* Hallmark · genre: playful-operate · macrostructure: Workbench / Calibrated Rail · design-system: DESIGN.md · designed-as-app */
+/* Final alignment layer for the locked StudyForge direction in DESIGN.md. */
+html,
+body {
+  line-height: var(--line-body);
+}
+
+.studyforge-shell small,
+.studyforge-shell .workspace-subtitle {
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* Keep functional labels readable; legacy pages used 9–11px text too often. */
+.studyforge-shell .stat-label,
+.studyforge-shell .field-label,
+.studyforge-shell .priority,
+.studyforge-shell .tag,
+.studyforge-shell .reminder-type,
+.studyforge-shell .notification-status,
+.studyforge-shell .search-kind,
+.studyforge-shell .suggestion-priority,
+.studyforge-shell .suggestion-row i,
+.studyforge-shell .search-result-row i,
+.studyforge-shell .form-footer,
+.studyforge-shell .eyebrow,
+.studyforge-shell .card-kicker {
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* Homepage after the scene: one calm daily flow, not a dashboard wall. */
+
+/* Notes: an index beside a writing sheet, with tools kept secondary. */
+.studyforge-shell .notes-workspace {
+  grid-template-columns: minmax(280px, 0.72fr) minmax(0, 1.7fr);
+  gap: 18px;
+}
+
+.studyforge-shell .notes-review-summary {
+  display: block;
+  margin: -3px 0 14px;
+  color: var(--color-ink-muted);
+}
+
+.studyforge-shell .notes-toolbar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+  margin-bottom: 12px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.studyforge-shell .notes-toolbar > button {
+  min-width: 104px;
+}
+
+.studyforge-shell .note-list {
+  gap: 0;
+  padding-right: 0;
+  border-top: 1px solid var(--color-rule);
+}
+
+.studyforge-shell .note-list-item {
+  position: relative;
+  gap: 8px;
+  padding: 15px 12px;
+  border: 0;
+  border-bottom: 1px solid var(--color-rule);
+  border-radius: 0;
+  color: var(--color-ink);
+  background: transparent;
+}
+
+.studyforge-shell .note-list-item:hover,
+.studyforge-shell .note-list-item.selected {
+  border-color: var(--color-rule);
+  background: var(--color-surface);
+}
+
+.studyforge-shell .note-list-item.selected::before {
+  position: absolute;
+  inset: 12px auto 12px 0;
+  width: 3px;
+  content: "";
+  background: var(--color-action);
+  border-radius: 3px;
+}
+
+.studyforge-shell .note-list-title,
+.studyforge-shell .note-list-meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  min-width: 0;
+}
+
+.studyforge-shell .note-list-title strong {
+  min-width: 0;
+  color: var(--color-ink);
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.studyforge-shell .note-list-title small,
+.studyforge-shell .note-list-meta small {
+  flex: none;
+  color: var(--color-ink-muted);
+  font-size: 12px;
+}
+
+.studyforge-shell .note-list-excerpt {
+  color: var(--color-ink-secondary);
+  font-size: 13px;
+  line-height: 1.6;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.studyforge-shell .note-list-meta > span {
+  min-width: 0;
+  color: var(--color-structure-2);
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.studyforge-shell .note-editor-panel > form {
+  gap: 16px;
+}
+
+.studyforge-shell .note-title-field,
+.studyforge-shell .note-meta-fields .field-label {
+  display: grid;
+  gap: 7px;
+  color: var(--color-ink-secondary);
+  font-size: 13px;
+}
+
+.studyforge-shell .note-title-field input {
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.studyforge-shell .note-meta-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.studyforge-shell .note-utility-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 0;
+  border-top: 1px solid var(--color-rule);
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.studyforge-shell .note-utility-bar > span {
+  flex: none;
+  color: var(--color-ink-muted);
+  font-size: 12px;
+}
+
+.studyforge-shell .note-utility-bar .button-row {
+  justify-content: flex-end;
+  gap: 7px;
+}
+
+.studyforge-shell .note-connections,
+.studyforge-shell .note-history {
+  border: 1px solid var(--color-rule);
+  border-radius: 8px;
+  background: var(--color-paper-2);
+}
+
+.studyforge-shell .note-connections > summary:not(.sf-button):not(.primary-button):not(.secondary-button):not(.ghost-button):not(.text-button):not(.danger-button),
+.studyforge-shell .note-history > summary:not(.sf-button):not(.primary-button):not(.secondary-button):not(.ghost-button):not(.text-button):not(.danger-button) {
+  padding: 12px 14px;
+  color: var(--color-ink-secondary);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.studyforge-shell .note-connections[open] > summary:not(.sf-button):not(.primary-button):not(.secondary-button):not(.ghost-button):not(.text-button):not(.danger-button),
+.studyforge-shell .note-history[open] > summary:not(.sf-button):not(.primary-button):not(.secondary-button):not(.ghost-button):not(.text-button):not(.danger-button) {
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.studyforge-shell .note-connections > p {
+  margin: 12px 14px 0;
+  color: var(--color-ink-muted);
+  font-size: 12px;
+}
+
+.studyforge-shell .note-connections .note-links-grid {
+  margin: 0;
+  padding: 12px 14px 14px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.studyforge-shell .note-body-field {
+  display: grid;
+  gap: 8px;
+}
+
+.studyforge-shell .note-body-field > span {
+  color: var(--color-ink-secondary);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.studyforge-shell .note-body-field textarea {
+  --sf-field-content-min-height: 470px;
+  line-height: 1.85;
+}
+
+.studyforge-shell .note-body-field > .markdown-body {
+  min-height: 470px;
+  padding: 22px 24px 22px 30px;
+  border: 1px solid var(--color-rule-strong);
+  border-radius: 8px;
+  background: var(--color-paper-2);
+  box-shadow: inset 3px 0 0 color-mix(in oklch, var(--color-action), transparent 62%);
+  line-height: 1.85;
+}
+
+.studyforge-shell .note-editor-panel .form-footer {
+  align-items: center;
+  margin-top: -2px;
+}
+
+.studyforge-shell .note-agent-review {
+  margin-top: 4px;
+}
+
+.studyforge-shell .note-review-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.studyforge-shell .note-review-heading strong {
+  color: var(--color-ink);
+  font-size: 16px;
+}
+
+.studyforge-shell .note-review-heading p,
+.studyforge-shell .note-review-heading span {
+  margin: 4px 0 0;
+  color: var(--color-ink-muted);
+  font-size: 12px;
+}
+
+.studyforge-shell .note-review-summary {
+  color: var(--color-ink);
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.studyforge-shell .note-review-questions {
+  padding: 13px 15px;
+  border-left: 3px solid var(--color-action);
+  background: var(--color-surface);
+}
+
+.studyforge-shell .note-history .version-list {
+  margin: 0;
+  padding: 12px 14px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.studyforge-shell .note-version-diff {
+  border-radius: 8px;
+}
+
+/* Learning partner: one consultation table and one user-confirmed action note. */
+.studyforge-shell .coach-page {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(290px, 0.62fr);
+  align-items: start;
+  gap: 18px;
+}
+
+/* Capability review: a continuous learning record, not a score dashboard. */
+.studyforge-shell .capability-workspace {
+  min-height: 520px;
+}
+
+.studyforge-shell .capability-page-heading > .primary-button {
+  flex: 0 0 auto;
+}
+
+.studyforge-shell .capability-empty {
+  margin: 0;
+  padding: 64px 28px;
+  border: 0;
+  background: transparent;
+}
+
+.studyforge-shell .capability-empty strong {
+  color: var(--color-ink);
+  font-size: 16px;
+}
+
+.studyforge-shell .capability-empty p {
+  margin: 8px 0 17px;
+  color: var(--color-ink-muted);
+}
+
+.studyforge-shell .capability-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
+  padding: 0 28px;
+}
+
+.studyforge-shell .capability-card {
+  position: relative;
+  padding: 25px 0 27px 20px;
+  border: 0;
+  border-bottom: 1px solid var(--color-rule-strong);
+  border-radius: 0;
+  background: transparent;
+}
+
+.studyforge-shell .capability-card::before {
+  position: absolute;
+  top: 31px;
+  bottom: -1px;
+  left: 0;
+  width: 1px;
+  content: "";
+  background: var(--color-rule-strong);
+}
+
+.studyforge-shell .capability-card::after {
+  position: absolute;
+  top: 30px;
+  left: -3px;
+  width: 7px;
+  height: 7px;
+  content: "";
+  border: 2px solid var(--color-action);
+  border-radius: 50%;
+  background: var(--color-surface);
+}
+
+.studyforge-shell .capability-card:last-child {
+  border-bottom: 0;
+}
+
+.studyforge-shell .capability-card:last-child::before {
+  bottom: 28px;
+}
+
+.studyforge-shell .capability-card-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(190px, 0.32fr);
+  align-items: start;
+  gap: 28px;
+}
+
+.studyforge-shell .capability-card-header > div:first-child > strong {
+  display: block;
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: 17px;
+  line-height: 1.4;
+}
+
+.studyforge-shell .capability-card-header p {
+  margin: 6px 0 0;
+  color: var(--color-ink-muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.studyforge-shell .capability-stage {
+  padding-left: 18px;
+  border-left: 1px solid var(--color-rule);
+}
+
+.studyforge-shell .capability-stage span {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--color-ink-muted);
+  font-size: 11px;
+}
+
+.studyforge-shell .capability-stage strong {
+  color: var(--color-structure-2);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.studyforge-shell .capability-meter {
+  height: 6px;
+  margin: 20px 0 10px;
+  overflow: hidden;
+  border-radius: 2px;
+  background: var(--color-paper-3);
+}
+
+.studyforge-shell .capability-meter span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--color-action);
+}
+
+.studyforge-shell .capability-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  color: var(--color-ink-secondary);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.studyforge-shell .capability-meta span + span {
+  position: relative;
+}
+
+.studyforge-shell .capability-meta span + span::before {
+  position: absolute;
+  top: 0;
+  left: -12px;
+  color: var(--color-rule-strong);
+  content: "·";
+}
+
+.studyforge-shell .capability-updated-at {
+  display: block;
+  margin-top: 7px;
+  color: var(--color-ink-muted);
+}
+
+.studyforge-shell .capability-actions {
+  justify-content: flex-start;
+  margin-top: 17px;
+}
+
+.studyforge-shell .capability-evidence-panel,
+.studyforge-shell .capability-history-panel,
+.studyforge-shell .capability-plan-preview {
+  display: grid;
+  gap: 0;
+  margin-top: 18px;
+  padding: 17px 18px;
+  border: 1px solid var(--color-rule-strong);
+  border-radius: 8px;
+  background: var(--color-paper-2);
+}
+
+.studyforge-shell .capability-plan-preview {
+  border-left: 3px solid var(--color-accent);
+}
+
+.studyforge-shell .capability-section-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 12px;
+}
+
+.studyforge-shell .capability-section-heading strong {
+  color: var(--color-ink);
+  font-size: 14px;
+}
+
+.studyforge-shell .capability-section-heading span {
+  color: var(--color-ink-muted);
+  font-size: 12px;
+}
+
+.studyforge-shell .capability-evidence-stats {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0;
+  margin-bottom: 8px;
+  border-top: 1px solid var(--color-rule);
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.studyforge-shell .capability-evidence-stats span {
+  padding: 10px 9px;
+  color: var(--color-ink-secondary);
+  font-size: 12px;
+  text-align: center;
+  border-right: 1px solid var(--color-rule);
+}
+
+.studyforge-shell .capability-evidence-stats span:last-child {
+  border-right: 0;
+}
+
+.studyforge-shell .capability-evidence-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 16px;
+  padding: 10px 0;
+  color: var(--color-ink);
+  font-size: 13px;
+  border-top: 1px solid var(--color-rule);
+}
+
+.studyforge-shell .capability-evidence-stats + .capability-evidence-row {
+  border-top: 0;
+}
+
+.studyforge-shell .capability-evidence-row small {
+  color: var(--color-ink-muted);
+  text-align: right;
+}
+
+.studyforge-shell .capability-history-row {
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 18px;
+  padding: 10px 0;
+  border-top: 1px solid var(--color-rule);
+}
+
+.studyforge-shell .capability-history-row > span,
+.studyforge-shell .capability-history-row > small {
+  color: var(--color-ink-muted);
+  font-size: 12px;
+}
+
+.studyforge-shell .capability-history-row > strong {
+  color: var(--color-ink-secondary);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.studyforge-shell .capability-plan-preview p {
+  margin: 0;
+  padding: 9px 0;
+  color: var(--color-ink-secondary);
+  font-size: 13px;
+  line-height: 1.6;
+  border-top: 1px solid var(--color-rule);
+}
+
+.studyforge-shell .capability-plan-preview .primary-button {
+  justify-self: start;
+  margin-top: 14px;
+}
+
+.studyforge-shell .capability-plan-preview > small {
+  margin-top: 12px;
+  color: var(--color-success);
+}
+
+.studyforge-shell .capability-other-evidence {
+  margin-top: 16px;
+  color: var(--color-ink-muted);
+  font-size: 12px;
+}
+
+.studyforge-shell .capability-other-evidence summary:not(.sf-button):not(.primary-button):not(.secondary-button):not(.ghost-button):not(.text-button):not(.danger-button) {
+  cursor: pointer;
+}
+
+.studyforge-shell .capability-other-evidence summary {
+  width: fit-content;
+}
+
+.studyforge-shell .capability-other-evidence .evidence-list {
+  margin-top: 10px;
+  border-top: 1px solid var(--color-rule);
+}
+
+.studyforge-shell .capability-other-evidence .evidence-row {
+  display: grid;
+  grid-template-columns: minmax(120px, 0.3fr) minmax(0, 1fr);
+  gap: 16px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.studyforge-shell .capability-other-evidence .evidence-row strong {
+  color: var(--color-ink-secondary);
+  font-size: 12px;
+}
+
+.studyforge-shell .capability-other-evidence .evidence-row span {
+  color: var(--color-ink-muted);
+}
+
+@media (max-width: 1100px) {
+  .studyforge-shell .coach-page {
+    grid-template-columns: minmax(0, 1fr) minmax(270px, 0.5fr);
+  }
+
+  .studyforge-shell .note-utility-bar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .studyforge-shell .note-utility-bar .button-row {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 760px) {
+  .studyforge-shell .coach-page {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .studyforge-shell .notes-workspace {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .studyforge-shell .notes-list-panel {
+    position: static;
+  }
+
+  .studyforge-shell .notes-workspace .note-list {
+    max-height: 310px;
+  }
+
+  .studyforge-shell .note-meta-fields {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .studyforge-shell .note-utility-bar .button-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+  }
+
+  .studyforge-shell .note-utility-bar button {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .studyforge-shell .note-body-field textarea {
+    --sf-field-content-min-height: 320px;
+  }
+
+  .studyforge-shell .note-body-field > .markdown-body {
+    min-height: 320px;
+    padding: 18px 18px 18px 23px;
+  }
+
+  .studyforge-shell .capability-grid {
+    padding: 0 20px;
+  }
+
+  .studyforge-shell .capability-card {
+    padding: 22px 0 24px 16px;
+  }
+
+  .studyforge-shell .capability-card-header {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .studyforge-shell .capability-stage {
+    padding: 10px 0 0;
+    border-top: 1px solid var(--color-rule);
+    border-left: 0;
+  }
+
+  .studyforge-shell .capability-stage span,
+  .studyforge-shell .capability-stage strong {
+    display: inline;
+  }
+
+  .studyforge-shell .capability-stage span {
+    margin: 0 7px 0 0;
+  }
+
+  .studyforge-shell .capability-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+  }
+
+  .studyforge-shell .capability-actions .ghost-button {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .studyforge-shell .capability-actions .ghost-button:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .studyforge-shell .capability-evidence-panel,
+  .studyforge-shell .capability-history-panel,
+  .studyforge-shell .capability-plan-preview {
+    padding: 15px;
+  }
+
+  .studyforge-shell .capability-section-heading {
+    display: grid;
+    gap: 4px;
+  }
+
+  .studyforge-shell .capability-evidence-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .studyforge-shell .capability-evidence-stats span {
+    border-right: 1px solid var(--color-rule);
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  .studyforge-shell .capability-evidence-stats span:nth-child(2n) {
+    border-right: 0;
+  }
+
+  .studyforge-shell .capability-evidence-stats span:last-child {
+    grid-column: 1 / -1;
+    border-bottom: 0;
+  }
+
+  .studyforge-shell .capability-evidence-row,
+  .studyforge-shell .capability-history-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 4px;
+  }
+
+  .studyforge-shell .capability-evidence-row small {
+    text-align: left;
+  }
+
+  .studyforge-shell .capability-other-evidence .evidence-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 3px;
+  }
+}
+
+@media (max-width: 680px) {
+  .studyforge-shell .notes-toolbar {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .studyforge-shell .notes-toolbar > button {
+    width: 100%;
+  }
+
+  .studyforge-shell .note-editor-panel .form-footer {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .studyforge-shell .note-editor-panel .form-footer > span {
+    grid-column: 1 / -1;
+    margin-right: 0;
+  }
+
+  .studyforge-shell .note-editor-panel .form-footer > button {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+/* Hallmark · genre: playful-operate · macrostructure: Calibrated Rail · design-system: DESIGN.md · designed-as-app */
+.studyforge-shell .review-cards-workspace {
+  display: grid;
+  gap: 20px;
+  width: min(1320px, 100%);
+  min-width: 0;
+  margin: 0 auto;
+}
+
+.studyforge-shell .review-page-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: stretch;
+  overflow: hidden;
+  border: 1px solid var(--color-rule-strong);
+  border-radius: 10px;
+  background: var(--color-paper);
+}
+
+.studyforge-shell .review-page-heading > div:first-child {
+  padding: 24px 28px;
+}
+
+.studyforge-shell .review-page-heading h2,
+.studyforge-shell .review-page-heading p {
+  margin: 0;
+}
+
+.studyforge-shell .review-page-heading h2 {
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3vw, 34px);
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+}
+
+.studyforge-shell .review-page-heading p {
+  max-width: 66ch;
+  margin-top: 8px;
+  color: var(--color-ink-secondary);
+}
+
+.studyforge-shell .review-overview {
+  display: grid;
+  align-content: center;
+  min-width: 230px;
+  padding: 20px 24px;
+  border-left: 1px solid var(--color-rule);
+  background: var(--color-paper-2);
+}
+
+.studyforge-shell .review-overview strong {
+  color: var(--color-structure-2);
+  font-size: 15px;
+}
+
+.studyforge-shell .review-overview span {
+  margin-top: 4px;
+  color: var(--color-ink-muted);
+  font-size: 12px;
+}
+
+.studyforge-shell .review-desk {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.72fr);
+  align-items: start;
+  min-width: 0;
+  overflow: clip;
+  border: 1px solid var(--color-rule-strong);
+  border-radius: 10px;
+  background: var(--color-paper);
+}
+
+.studyforge-shell .review-session,
+.studyforge-shell .review-card-editor {
+  min-width: 0;
+  padding: 28px 28px 32px;
+}
+
+.studyforge-shell .review-card-editor {
+  position: sticky;
+  top: 96px;
+  border-left: 1px solid var(--color-rule-strong);
+  background: var(--color-paper-2);
+}
+
+.studyforge-shell .review-section-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.studyforge-shell .review-section-heading h3,
+.studyforge-shell .review-section-heading p {
+  margin: 0;
+}
+
+.studyforge-shell .review-section-heading h3 {
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: 19px;
+  letter-spacing: -0.015em;
+}
+
+.studyforge-shell .review-section-heading p {
+  max-width: 62ch;
+  margin-top: 4px;
+  color: var(--color-ink-muted);
+  font-size: 13px;
+}
+
+.studyforge-shell .review-section-heading > span {
+  flex: none;
+  color: var(--color-structure-2);
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.studyforge-shell .review-selection-bar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px 16px;
+  margin-top: 16px;
+  padding: 12px 16px;
+  border: 1px solid var(--color-rule);
+  border-radius: 8px;
+  background: var(--color-paper-2);
+}
+
+.studyforge-shell .review-selection-bar > span {
+  color: var(--color-ink-secondary);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.studyforge-shell .review-queue {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.studyforge-shell .review-queue::before {
+  position: absolute;
+  top: 35px;
+  bottom: 35px;
+  left: 7px;
+  width: 1px;
+  content: "";
+  background: var(--color-rule-strong);
+}
+
+.studyforge-shell .review-queue > li {
+  position: relative;
+  min-width: 0;
+  padding-left: 32px;
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.studyforge-shell .review-queue > li:last-child {
+  border-bottom: 0;
+}
+
+.studyforge-shell .review-queue > li::before {
+  position: absolute;
+  top: 33px;
+  left: 2px;
+  z-index: 1;
+  width: 11px;
+  height: 11px;
+  content: "";
+  border: 2px solid var(--color-action);
+  border-radius: 50%;
+  background: var(--color-paper);
+}
+
+.studyforge-shell .review-queue > li:first-child::before {
+  background: var(--color-action);
+}
+
+.studyforge-shell .review-cards-workspace .review-card {
+  position: static;
+  min-width: 0;
+  padding: 24px 0 28px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.studyforge-shell .review-cards-workspace .review-card::before {
+  display: none;
+}
+
+.studyforge-shell .review-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--color-ink-muted);
+  font-size: 12px;
+}
+
+.studyforge-shell .review-card-meta label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-structure-2);
+  font-weight: 750;
+}
+
+.studyforge-shell .review-card-meta input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  accent-color: var(--color-action);
+}
+
+.studyforge-shell .review-card h3 {
+  max-width: 34ch;
+  margin: 12px 0 20px;
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: clamp(18px, 2vw, 22px);
+  font-weight: 700;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.studyforge-shell .review-reveal-button {
+  min-width: 148px;
+}
+
+.studyforge-shell .review-cards-workspace .review-card-answer {
+  margin-top: 4px;
+  padding: 16px;
+  border: 1px solid var(--color-rule-strong);
+  border-radius: 8px;
+  background: var(--color-paper-2);
+}
+
+.studyforge-shell .review-card-answer strong {
+  color: var(--color-structure-2);
+  font-size: 12px;
+}
+
+.studyforge-shell .review-card-answer p {
+  max-width: 72ch;
+  margin: 8px 0 0;
+  color: var(--color-ink);
+  font-size: 15px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+}
+
+.studyforge-shell .review-card-answer small {
+  display: block;
+  margin-top: 8px;
+  color: var(--color-ink-secondary);
+  font-size: 12px;
+}
+
+.studyforge-shell .review-recall-choice {
+  min-width: 0;
+  margin: 20px 0 0;
+  padding: 16px 0 0;
+  border: 0;
+  border-top: 1px solid var(--color-rule);
+}
+
+.studyforge-shell .review-recall-choice legend {
+  padding: 0;
+  color: var(--color-ink-secondary);
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.studyforge-shell .review-quality-options {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.studyforge-shell .review-quality-options button {
+  min-width: 0;
+  white-space: nowrap;
+}
+
+.studyforge-shell .review-card-tools {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin-top: 16px;
+}
+
+.studyforge-shell .review-card-tools > details > summary:not(.sf-button):not(.primary-button):not(.secondary-button):not(.ghost-button):not(.text-button):not(.danger-button) {
+  color: var(--color-ink-muted);
+  font-size: 12px;
+}
+
+.studyforge-shell .review-card-tools > details > summary {
+  white-space: nowrap;
+}
+
+.studyforge-shell .review-card-tools > button {
+  white-space: nowrap;
+}
+
+.studyforge-shell .review-card-tools > details > summary:not(.sf-button):not(.primary-button):not(.secondary-button):not(.ghost-button):not(.text-button):not(.danger-button):hover {
+  color: var(--color-structure-2);
+}
+
+.studyforge-shell .review-history {
+  position: relative;
+}
+
+.studyforge-shell .review-history > summary:not(.sf-button):not(.primary-button):not(.secondary-button):not(.ghost-button):not(.text-button):not(.danger-button) {
+  min-height: 44px;
+}
+
+.studyforge-shell .review-history > summary {
+  display: inline-flex;
+  align-items: center;
+}
+
+.studyforge-shell .review-history-list {
+  display: grid;
+  gap: 1px;
+  width: min(510px, calc(100vw - 100px));
+  margin: 4px 0 8px;
+  border: 1px solid var(--color-rule);
+  background: var(--color-rule);
+}
+
+.studyforge-shell .review-history-list > span,
+.studyforge-shell .review-history-row {
+  padding: 12px;
+  background: var(--color-paper-2);
+}
+
+.studyforge-shell .review-history-row {
+  display: grid;
+  grid-template-columns: 74px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+}
+
+.studyforge-shell .review-history-row span,
+.studyforge-shell .review-history-row small {
+  color: var(--color-ink-muted);
+  font-size: 12px;
+}
+
+.studyforge-shell .review-history-row strong {
+  color: var(--color-ink-secondary);
+  font-size: 12px;
+}
+
+.studyforge-shell .review-inline-confirm {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  margin-top: 12px;
+  padding: 12px;
+  border: 1px solid var(--color-accent);
+  border-radius: 8px;
+  background: color-mix(in oklch, var(--color-paper), var(--color-accent) 14%);
+}
+
+.studyforge-shell .review-inline-confirm > span {
+  min-width: 190px;
+  margin-right: auto;
+  color: var(--color-ink-secondary);
+  font-size: 12px;
+}
+
+.studyforge-shell .review-empty {
+  padding: 56px 20px;
+  text-align: center;
+}
+
+.studyforge-shell .review-empty strong {
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: 18px;
+}
+
+.studyforge-shell .review-empty p {
+  max-width: 46ch;
+  margin: 8px auto 0;
+  color: var(--color-ink-muted);
+}
+
+.studyforge-shell .review-library {
+  border-top: 1px solid var(--color-rule-strong);
+}
+
+.studyforge-shell .review-library > details {
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.studyforge-shell .review-library > details > summary:not(.sf-button):not(.primary-button):not(.secondary-button):not(.ghost-button):not(.text-button):not(.danger-button),
+.studyforge-shell .review-patterns > summary:not(.sf-button):not(.primary-button):not(.secondary-button):not(.ghost-button):not(.text-button):not(.danger-button),
+.studyforge-shell .review-from-note > summary:not(.sf-button):not(.primary-button):not(.secondary-button):not(.ghost-button):not(.text-button):not(.danger-button) {
+  color: var(--color-ink-secondary);
+  font-weight: 750;
+}
+
+.studyforge-shell .review-library > details > summary,
+.studyforge-shell .review-patterns > summary,
+.studyforge-shell .review-from-note > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.studyforge-shell .review-library > details > summary:not(.sf-button):not(.primary-button):not(.secondary-button):not(.ghost-button):not(.text-button):not(.danger-button) {
+  padding: 8px 0;
+  font-size: 13px;
+}
+
+.studyforge-shell .review-library summary:not(.sf-button):not(.primary-button):not(.secondary-button):not(.ghost-button):not(.text-button):not(.danger-button) span {
+  color: var(--color-ink-muted);
+  font-size: 12px;
+}
+
+.studyforge-shell .review-library-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px 16px;
+  padding: 12px 0 12px 16px;
+  border-top: 1px solid var(--color-rule);
+}
+
+.studyforge-shell .review-library-row > div:first-child {
+  min-width: 0;
+}
+
+.studyforge-shell .review-library-row strong,
+.studyforge-shell .review-library-row span {
+  display: block;
+}
+
+.studyforge-shell .review-library-row strong {
+  color: var(--color-ink);
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+.studyforge-shell .review-library-row span {
+  margin-top: 4px;
+  color: var(--color-ink-muted);
+  font-size: 12px;
+}
+
+.studyforge-shell .review-from-note {
+  padding: 16px 0 20px;
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.studyforge-shell .review-from-note > summary:not(.sf-button):not(.primary-button):not(.secondary-button):not(.ghost-button):not(.text-button):not(.danger-button) {
+  font-size: 13px;
+}
+
+.studyforge-shell .review-from-note .stack-form {
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.studyforge-shell .review-from-note label,
+.studyforge-shell .review-manual-form label {
+  display: grid;
+  gap: 4px;
+  color: var(--color-ink-secondary);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.studyforge-shell .review-from-note small {
+  color: var(--color-ink-muted);
+  font-size: 12px;
+}
+
+.studyforge-shell .review-generation-preview {
+  display: grid;
+  gap: 12px;
+  margin: 16px 0;
+  padding: 16px;
+  border: 1px solid var(--color-accent);
+  border-radius: 8px;
+  background: color-mix(in oklch, var(--color-paper), var(--color-accent) 12%);
+}
+
+.studyforge-shell .review-generation-preview > strong {
+  color: var(--color-ink);
+  font-size: 13px;
+}
+
+.studyforge-shell .review-generation-preview > div:nth-child(2) {
+  display: grid;
+  gap: 1px;
+  border: 1px solid var(--color-rule);
+  background: var(--color-rule);
+}
+
+.studyforge-shell .review-generation-preview article {
+  padding: 12px;
+  background: var(--color-paper);
+}
+
+.studyforge-shell .review-generation-preview article strong {
+  color: var(--color-ink);
+  font-size: 12px;
+}
+
+.studyforge-shell .review-generation-preview article p {
+  margin: 4px 0 0;
+  color: var(--color-ink-secondary);
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.studyforge-shell .review-manual-form {
+  display: grid;
+  gap: 12px;
+  padding-top: 20px;
+}
+
+.studyforge-shell .review-manual-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.studyforge-shell .review-manual-heading > strong {
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: 16px;
+}
+
+.studyforge-shell .review-manual-form input,
+.studyforge-shell .review-manual-form select,
+.studyforge-shell .review-manual-form textarea,
+.studyforge-shell .review-from-note select {
+  width: 100%;
+  min-width: 0;
+  border-radius: 8px;
+  background: var(--color-paper);
+}
+
+.studyforge-shell .review-manual-form textarea {
+  min-height: 132px;
+  resize: vertical;
+}
+
+.studyforge-shell .review-form-footer {
+  display: grid;
+  gap: 12px;
+  padding-top: 4px;
+}
+
+.studyforge-shell .review-form-footer span {
+  color: var(--color-ink-muted);
+  font-size: 12px;
+}
+
+.studyforge-shell .review-form-footer .primary-button {
+  width: 100%;
+}
+
+.studyforge-shell .review-patterns {
+  overflow: clip;
+  border: 1px solid var(--color-rule-strong);
+  border-radius: 10px;
+  background: var(--color-paper);
+}
+
+.studyforge-shell .review-patterns > summary:not(.sf-button):not(.primary-button):not(.secondary-button):not(.ghost-button):not(.text-button):not(.danger-button) {
+  min-height: 76px;
+  padding: 16px 20px;
+  background: var(--color-paper-2);
+}
+
+.studyforge-shell .review-patterns > summary > span strong,
+.studyforge-shell .review-patterns > summary > span small {
+  display: block;
+}
+
+.studyforge-shell .review-patterns > summary:not(.sf-button):not(.primary-button):not(.secondary-button):not(.ghost-button):not(.text-button):not(.danger-button) > span strong {
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: 16px;
+}
+
+.studyforge-shell .review-patterns > summary:not(.sf-button):not(.primary-button):not(.secondary-button):not(.ghost-button):not(.text-button):not(.danger-button) > span small,
+.studyforge-shell .review-patterns > summary:not(.sf-button):not(.primary-button):not(.secondary-button):not(.ghost-button):not(.text-button):not(.danger-button) > b {
+  color: var(--color-ink-muted);
+  font-size: 12px;
+}
+
+.studyforge-shell .review-patterns-body {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  padding-top: 0;
+  background: var(--color-rule);
+}
+
+.studyforge-shell .review-patterns-body > section {
+  min-width: 0;
+  padding: 20px;
+  background: var(--color-paper);
+}
+
+.studyforge-shell .review-patterns-body > section.review-next-practice {
+  grid-column: 1 / -1;
+}
+
+.studyforge-shell .review-patterns-body h3 {
+  margin: 0 0 12px;
+  color: var(--color-ink);
+  font-size: 14px;
+}
+
+.studyforge-shell .review-patterns-body p {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 0;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--color-rule);
+  color: var(--color-ink-secondary);
+  font-size: 13px;
+}
+
+.studyforge-shell .review-patterns-body p:last-child {
+  border-bottom: 0;
+}
+
+.studyforge-shell .review-patterns-body p strong {
+  flex: none;
+  color: var(--color-structure-2);
+  font-size: 12px;
+}
+
+.studyforge-shell .review-next-practice p {
+  display: grid;
+  grid-template-columns: minmax(120px, 0.35fr) minmax(0, 1fr);
+}
+
+.studyforge-shell .review-loading {
+  display: grid;
+  gap: 4px;
+  min-height: 180px;
+  place-content: center;
+  text-align: center;
+}
+
+.studyforge-shell .review-loading span {
+  color: var(--color-ink-muted);
+  font-size: 13px;
+}
+
+@media (max-width: 1040px) {
+  .studyforge-shell .review-desk {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .studyforge-shell .review-card-editor {
+    position: static;
+    border-top: 1px solid var(--color-rule-strong);
+    border-left: 0;
+  }
+}
+
+@media (max-width: 700px) {
+  .studyforge-shell .review-page-heading {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .studyforge-shell .review-page-heading > div:first-child,
+  .studyforge-shell .review-session,
+  .studyforge-shell .review-card-editor {
+    padding: 20px 20px 24px;
+  }
+
+  .studyforge-shell .review-overview {
+    min-width: 0;
+    padding: 16px 20px;
+    border-top: 1px solid var(--color-rule);
+    border-left: 0;
+  }
+
+  .studyforge-shell .review-quality-options {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .studyforge-shell .review-quality-options button:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .studyforge-shell .review-history-row {
+    grid-template-columns: 70px minmax(0, 1fr);
+  }
+
+  .studyforge-shell .review-history-row small {
+    grid-column: 1 / -1;
+  }
+
+  .studyforge-shell .review-patterns-body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .studyforge-shell .review-patterns-body > section.review-next-practice {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 470px) {
+  .studyforge-shell .review-section-heading,
+  .studyforge-shell .review-card-meta,
+  .studyforge-shell .review-patterns > summary {
+    display: grid;
+  }
+
+  .studyforge-shell .review-selection-bar,
+  .studyforge-shell .review-library-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .studyforge-shell .review-selection-bar .button-row,
+  .studyforge-shell .review-library-row .button-row {
+    justify-content: flex-start;
+  }
+
+  .studyforge-shell .review-inline-confirm {
+    align-items: stretch;
+  }
+
+  .studyforge-shell .review-inline-confirm > span {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .studyforge-shell .review-next-practice p {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* TeachingWorkspace · one real learning sequence, not an evaluation dashboard. */
+.studyforge-shell .teaching-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+  width: min(1320px, 100%);
+  min-width: 0;
+  margin: 0 auto;
+}
+
+.studyforge-shell .teaching-page-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  overflow: hidden;
+  border: 1px solid var(--color-rule-strong);
+  border-radius: 10px;
+  background: var(--color-paper);
+}
+
+.studyforge-shell .teaching-page-heading > div:first-child {
+  padding: 24px 28px;
+}
+
+.studyforge-shell .teaching-page-heading h2,
+.studyforge-shell .teaching-page-heading p,
+.studyforge-shell .teaching-sidebar-heading h3,
+.studyforge-shell .teaching-sidebar-heading p,
+.studyforge-shell .teaching-lesson-header h2,
+.studyforge-shell .teaching-lesson-header p {
+  margin: 0;
+}
+
+.studyforge-shell .teaching-page-heading h2 {
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3vw, 34px);
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+}
+
+.studyforge-shell .teaching-page-heading p {
+  max-width: 66ch;
+  margin-top: 8px;
+  color: var(--color-ink-secondary);
+}
+
+.studyforge-shell .teaching-overview {
+  display: grid;
+  align-content: center;
+  min-width: 240px;
+  padding: 20px 24px;
+  border-left: 1px solid var(--color-rule);
+  background: var(--color-paper-2);
+}
+
+.studyforge-shell .teaching-overview strong {
+  color: var(--color-structure-2);
+  font-size: 15px;
+}
+
+.studyforge-shell .teaching-overview span {
+  max-width: 32ch;
+  margin-top: 4px;
+  color: var(--color-ink-muted);
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+.studyforge-shell .teaching-desk {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.72fr) minmax(0, 1.65fr);
+  align-items: start;
+  min-width: 0;
+  overflow: clip;
+  border: 1px solid var(--color-rule-strong);
+  border-radius: 10px;
+  background: var(--color-paper);
+}
+
+.studyforge-shell .teaching-sidebar,
+.studyforge-shell .teaching-main {
+  min-width: 0;
+  min-height: 420px;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.studyforge-shell .teaching-sidebar {
+  padding: 24px;
+  border-right: 1px solid var(--color-rule-strong);
+  background: var(--color-paper-2);
+}
+
+.studyforge-shell .teaching-sidebar-heading,
+.studyforge-shell .teaching-lesson-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.studyforge-shell .teaching-sidebar-heading {
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.studyforge-shell .teaching-sidebar-heading h3 {
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: 18px;
+}
+
+.studyforge-shell .teaching-sidebar-heading p,
+.studyforge-shell .teaching-sidebar-heading > span {
+  color: var(--color-ink-muted);
+  font-size: 12px;
+}
+
+.studyforge-shell .teaching-sidebar-heading p {
+  margin-top: 4px;
+}
+
+.studyforge-shell .teaching-sidebar-heading > span {
+  flex: none;
+  padding-top: 4px;
+}
+
+.studyforge-shell .teaching-new-lesson {
+  display: grid;
+  gap: 12px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.studyforge-shell .teaching-new-lesson label,
+.studyforge-shell .teaching-answer-form label {
+  display: grid;
+  gap: 4px;
+  color: var(--color-ink-secondary);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.studyforge-shell .teaching-new-lesson input,
+.studyforge-shell .teaching-new-lesson select,
+.studyforge-shell .teaching-new-lesson textarea,
+.studyforge-shell .teaching-answer-form textarea {
+  width: 100%;
+  min-width: 0;
+  border-radius: 8px;
+  background: var(--color-paper);
+}
+
+.studyforge-shell .teaching-new-lesson textarea,
+.studyforge-shell .teaching-answer-form textarea {
+  resize: vertical;
+}
+
+.studyforge-shell .teaching-new-lesson .primary-button {
+  width: 100%;
+}
+
+.studyforge-shell .teaching-session-list {
+  display: grid;
+  gap: 0;
+  margin-top: 8px;
+}
+
+.studyforge-shell .teaching-session-row {
+  display: grid;
+  gap: 4px;
+  width: 100%;
+  min-height: 64px;
+  padding: 12px 8px;
+  text-align: left;
+  border: 0;
+  border-bottom: 1px solid var(--color-rule);
+  border-radius: 0;
+  background: transparent;
+}
+
+.studyforge-shell .teaching-session-row:hover:not(:disabled) {
+  border-color: var(--color-rule);
+  background: color-mix(in oklch, var(--color-paper-2), var(--color-structure) 6%);
+}
+
+.studyforge-shell .teaching-session-row.selected,
+.studyforge-shell .teaching-session-row.selected:hover {
+  color: var(--color-ink);
+  border-color: var(--color-rule);
+  background: var(--color-paper);
+  box-shadow: inset 0 0 0 1px var(--color-rule-strong);
+}
+
+.studyforge-shell .teaching-session-row strong {
+  color: var(--color-ink);
+  font-size: 13px;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+.studyforge-shell .teaching-session-row small {
+  color: var(--color-ink-muted);
+  font-size: 12px;
+}
+
+.studyforge-shell .teaching-session-empty {
+  padding: 32px 8px;
+  text-align: center;
+}
+
+.studyforge-shell .teaching-session-empty strong,
+.studyforge-shell .teaching-main-empty strong,
+.studyforge-shell .teaching-step-empty strong {
+  color: var(--color-ink);
+}
+
+.studyforge-shell .teaching-session-empty p,
+.studyforge-shell .teaching-main-empty p,
+.studyforge-shell .teaching-step-empty p {
+  margin: 4px 0 0;
+  color: var(--color-ink-muted);
+  font-size: 13px;
+}
+
+.studyforge-shell .teaching-main {
+  padding: 28px 32px 36px;
+  background: var(--color-paper);
+}
+
+.studyforge-shell .teaching-lesson-header {
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--color-rule-strong);
+}
+
+.studyforge-shell .teaching-lesson-header h2 {
+  max-width: 34ch;
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2.5vw, 28px);
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+.studyforge-shell .teaching-lesson-header p {
+  margin-top: 4px;
+  color: var(--color-structure-2);
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.studyforge-shell .teaching-flow {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.studyforge-shell .teaching-flow::before {
+  position: absolute;
+  top: 36px;
+  bottom: 36px;
+  left: 15px;
+  width: 1px;
+  content: "";
+  background: var(--color-rule-strong);
+}
+
+.studyforge-shell .teaching-flow > li {
+  position: relative;
+  min-width: 0;
+  padding: 28px 0 32px 52px;
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.studyforge-shell .teaching-flow > li:last-child {
+  padding-bottom: 8px;
+  border-bottom: 0;
+}
+
+.studyforge-shell .teaching-step-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.studyforge-shell .teaching-step-heading > span {
+  position: absolute;
+  left: 0;
+  z-index: 1;
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  color: var(--color-ink-muted);
+  border: 1px solid var(--color-rule-strong);
+  border-radius: 50%;
+  background: var(--color-paper);
+  font-family: var(--font-data);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.studyforge-shell .teaching-flow > li.is-current .teaching-step-heading > span {
+  color: var(--color-action-ink);
+  border-color: var(--color-action);
+  background: var(--color-action);
+}
+
+.studyforge-shell .teaching-flow > li.is-done .teaching-step-heading > span {
+  color: var(--color-paper);
+  border-color: var(--color-structure-2);
+  background: var(--color-structure-2);
+}
+
+.studyforge-shell .teaching-flow > li.is-waiting .teaching-step-heading,
+.studyforge-shell .teaching-flow > li.is-waiting .teaching-step-empty {
+  opacity: 0.72;
+}
+
+.studyforge-shell .teaching-step-heading h3 {
+  margin: 0;
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: 18px;
+}
+
+.studyforge-shell .teaching-explanation-copy {
+  max-width: 72ch;
+  margin: 16px 0 0;
+  color: var(--color-ink);
+  font-size: 15px;
+  line-height: 1.75;
+  white-space: pre-wrap;
+}
+
+.studyforge-shell .teaching-question {
+  max-width: 62ch;
+  margin: 16px 0 0;
+  color: var(--color-ink);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.55;
+}
+
+.studyforge-shell .teaching-step-empty {
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px dashed var(--color-rule-strong);
+  border-radius: 8px;
+  background: var(--color-paper-2);
+}
+
+.studyforge-shell .teaching-answer-clues,
+.studyforge-shell .teaching-feedback-source {
+  margin-top: 16px;
+  border-top: 1px solid var(--color-rule);
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.studyforge-shell .teaching-answer-clues summary:not(.sf-button):not(.primary-button):not(.secondary-button):not(.ghost-button):not(.text-button):not(.danger-button),
+.studyforge-shell .teaching-feedback-source summary:not(.sf-button):not(.primary-button):not(.secondary-button):not(.ghost-button):not(.text-button):not(.danger-button) {
+  min-height: 44px;
+  color: var(--color-ink-secondary);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.studyforge-shell .teaching-answer-clues summary,
+.studyforge-shell .teaching-feedback-source summary {
+  display: flex;
+  align-items: center;
+}
+
+.studyforge-shell .teaching-answer-clues ul,
+.studyforge-shell .teaching-feedback-source p {
+  margin: 0 0 16px;
+  color: var(--color-ink-secondary);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.studyforge-shell .teaching-answer-form {
+  display: grid;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.studyforge-shell .teaching-answer-form textarea {
+  min-height: 164px;
+}
+
+.studyforge-shell .teaching-answer-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 20px;
+}
+
+.studyforge-shell .teaching-answer-footer > span {
+  max-width: 48ch;
+  color: var(--color-ink-muted);
+  font-size: 12px;
+}
+
+.studyforge-shell .teaching-saved-answer {
+  margin: 20px 0 0;
+  padding: 16px 20px;
+  border: 1px solid var(--color-rule);
+  border-radius: 8px;
+  background: var(--color-paper-2);
+}
+
+.studyforge-shell .teaching-saved-answer strong {
+  color: var(--color-structure-2);
+  font-size: 12px;
+}
+
+.studyforge-shell .teaching-saved-answer p {
+  margin: 8px 0 0;
+  color: var(--color-ink);
+  line-height: 1.7;
+  white-space: pre-wrap;
+}
+
+.studyforge-shell .teaching-check-action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px 24px;
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px solid var(--color-accent);
+  border-radius: 8px;
+  background: color-mix(in oklch, var(--color-paper), var(--color-accent) 12%);
+}
+
+.studyforge-shell .teaching-check-action p {
+  max-width: 48ch;
+  margin: 0;
+  color: var(--color-ink-secondary);
+  font-size: 13px;
+}
+
+.studyforge-shell .teaching-feedback {
+  display: grid;
+  gap: 16px;
+  margin-top: 16px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.studyforge-shell .teaching-answer-summary {
+  color: var(--color-structure-2);
+  font-family: var(--font-display);
+  font-size: 19px;
+}
+
+.studyforge-shell .teaching-feedback > p,
+.studyforge-shell .teaching-next-step p {
+  max-width: 72ch;
+  margin: 0;
+  color: var(--color-ink-secondary);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.studyforge-shell .teaching-feedback .teaching-error-note {
+  width: fit-content;
+  padding: 8px 12px;
+  color: var(--color-danger);
+  border: 1px solid color-mix(in oklch, var(--color-danger), transparent 55%);
+  border-radius: 8px;
+  background: color-mix(in oklch, var(--color-paper), var(--color-danger) 8%);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.studyforge-shell .teaching-rubric-result {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  border: 1px solid var(--color-rule);
+  background: var(--color-rule);
+}
+
+.studyforge-shell .teaching-rubric-result > section {
+  min-width: 0;
+  padding: 16px;
+  background: var(--color-paper-2);
+}
+
+.studyforge-shell .teaching-rubric-result h4 {
+  margin: 0;
+  color: var(--color-ink);
+  font-size: 13px;
+}
+
+.studyforge-shell .teaching-rubric-result ul,
+.studyforge-shell .teaching-rubric-result p,
+.studyforge-shell .teaching-misconceptions ul,
+.studyforge-shell .teaching-more-practice ul {
+  margin: 8px 0 0;
+  padding-left: 20px;
+  color: var(--color-ink-secondary);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.studyforge-shell .teaching-rubric-result p {
+  padding-left: 0;
+}
+
+.studyforge-shell .teaching-misconceptions,
+.studyforge-shell .teaching-more-practice {
+  color: var(--color-ink-secondary);
+  font-size: 13px;
+}
+
+.studyforge-shell .teaching-next-step {
+  padding: 16px;
+  border: 1px solid var(--color-rule-strong);
+  border-radius: 8px;
+  background: var(--color-paper-2);
+}
+
+.studyforge-shell .teaching-next-step strong,
+.studyforge-shell .teaching-more-practice strong,
+.studyforge-shell .teaching-misconceptions strong {
+  color: var(--color-ink);
+  font-size: 13px;
+}
+
+.studyforge-shell .teaching-next-step p {
+  margin-top: 4px;
+}
+
+.studyforge-shell .teaching-feedback-source {
+  margin-top: 0;
+}
+
+.studyforge-shell .teaching-main-empty,
+.studyforge-shell .teaching-loading {
+  display: grid;
+  min-height: 260px;
+  padding: 32px;
+  place-content: center;
+  text-align: center;
+}
+
+.studyforge-shell .teaching-loading {
+  width: min(1320px, 100%);
+  margin: 0 auto;
+  color: var(--color-ink);
+  border: 1px solid var(--color-rule-strong);
+  border-radius: 10px;
+  background: var(--color-paper);
+}
+
+.studyforge-shell .teaching-loading span {
+  margin-top: 4px;
+  color: var(--color-ink-muted);
+  font-size: 13px;
+}
+
+@media (max-width: 1040px) {
+  .studyforge-shell .teaching-desk {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .studyforge-shell .teaching-sidebar {
+    min-height: 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--color-rule-strong);
+  }
+
+  .studyforge-shell .teaching-session-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .studyforge-shell .teaching-session-row {
+    border: 1px solid var(--color-rule);
+    border-radius: 8px;
+  }
+}
+
+@media (max-width: 700px) {
+  .studyforge-shell .teaching-page-heading {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .studyforge-shell .teaching-page-heading > div:first-child,
+  .studyforge-shell .teaching-sidebar,
+  .studyforge-shell .teaching-main {
+    padding: 20px;
+  }
+
+  .studyforge-shell .teaching-overview {
+    min-width: 0;
+    padding: 16px 20px;
+    border-top: 1px solid var(--color-rule);
+    border-left: 0;
+  }
+
+  .studyforge-shell .teaching-session-list,
+  .studyforge-shell .teaching-rubric-result {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .studyforge-shell .teaching-lesson-header,
+  .studyforge-shell .teaching-answer-footer,
+  .studyforge-shell .teaching-check-action {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .studyforge-shell .teaching-lesson-header .ghost-button,
+  .studyforge-shell .teaching-answer-footer .primary-button,
+  .studyforge-shell .teaching-check-action .primary-button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 470px) {
+  .studyforge-shell .teaching-flow > li {
+    padding-left: 44px;
+  }
+
+  .studyforge-shell .teaching-step-heading > span {
+    width: 28px;
+    height: 28px;
+  }
+
+  .studyforge-shell .teaching-flow::before {
+    left: 13px;
+  }
+}
+
+/* 岗位分析：一份可回看的求职准备夹，不做匹配评分仪表盘。 */
+.studyforge-shell .job-analysis-workspace {
+  display: block;
+  width: min(1260px, 100%);
+  margin: 0 auto;
+  color: var(--color-ink);
+}
+
+.studyforge-shell .job-analysis-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 24px;
+  padding: clamp(24px, 4vw, 44px);
+  border: 1px solid var(--color-rule-strong);
+  border-bottom: 0;
+  border-radius: 10px 10px 0 0;
+  background: var(--color-paper-2);
+}
+
+.studyforge-shell .job-analysis-heading h2 {
+  max-width: 18ch;
+  min-width: 0;
+  margin: 0;
+  overflow-wrap: anywhere;
+  font-family: var(--font-display);
+  font-size: clamp(27px, 3.5vw, 42px);
+  line-height: 1.08;
+  letter-spacing: -.03em;
+}
+
+.studyforge-shell .job-analysis-heading p {
+  max-width: 62ch;
+  margin: 11px 0 0;
+  color: var(--color-ink-secondary);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.studyforge-shell .job-analysis-heading > span {
+  color: var(--color-ink-muted);
+  font-size: 12px;
+  font-weight: 750;
+}
+
+/* Hallmark · pre-emit critique: P5 H5 E4 S5 R5 V4 */
+.studyforge-shell .job-readiness-desk {
+  display: grid;
+  grid-template-areas: "archive main";
+  grid-template-columns: minmax(250px, 290px) minmax(0, 1fr);
+  overflow: hidden;
+  border: 1px solid var(--color-rule-strong);
+  border-radius: 0 0 10px 10px;
+  background: var(--color-paper);
+}
+
+.studyforge-shell .job-analysis-main {
+  grid-area: main;
+  min-width: 0;
+  background: var(--color-paper);
+}
+
+.studyforge-shell .job-analysis-archive {
+  grid-area: archive;
+  min-width: 0;
+  padding: 24px 18px;
+  border-right: 1px solid var(--color-rule-strong);
+  background: var(--color-paper-2);
+}
+
+.studyforge-shell .job-analysis-archive > div:first-child {
+  padding: 0 8px 18px;
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.studyforge-shell .job-analysis-archive h3,
+.studyforge-shell .job-analysis-main-heading h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 18px;
+  line-height: 1.25;
+}
+
+.studyforge-shell .job-analysis-archive p,
+.studyforge-shell .job-analysis-main-heading p {
+  margin: 7px 0 0;
+  color: var(--color-ink-muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.studyforge-shell .job-history-list {
+  display: grid;
+  gap: 0;
+  margin-top: 8px;
+}
+
+.studyforge-shell .job-history-row {
+  display: grid;
+  width: 100%;
+  min-width: 0;
+  min-height: 88px;
+  gap: 4px;
+  padding: 14px 8px;
+  color: var(--color-ink-secondary);
+  text-align: left;
+  border: 0;
+  border-bottom: 1px solid var(--color-rule);
+  border-radius: 0;
+  background: transparent;
+}
+
+.studyforge-shell .job-history-row:hover,
+.studyforge-shell .job-history-row.selected {
+  color: var(--color-ink);
+  border-color: var(--color-rule-strong);
+  background: var(--color-paper-3);
+}
+
+.studyforge-shell .job-history-row:focus-visible {
+  position: relative;
+  z-index: 1;
+}
+
+.studyforge-shell .job-history-row strong {
+  min-width: 0;
+  color: inherit;
+  overflow-wrap: anywhere;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.studyforge-shell .job-history-row span,
+.studyforge-shell .job-history-row small,
+.studyforge-shell .job-history-state {
+  color: var(--color-ink-muted);
+  font-size: 10px;
+  font-style: normal;
+  line-height: 1.5;
+}
+
+.studyforge-shell .job-history-state {
+  margin: 16px 8px 0;
+  padding: 18px 0;
+}
+
+.studyforge-shell .job-analysis-editor,
+.studyforge-shell .job-saved-analysis,
+.studyforge-shell .job-analysis-preview {
+  display: block;
+  min-width: 0;
+  padding: clamp(24px, 4vw, 42px);
+}
+
+.studyforge-shell .job-analysis-preview {
+  border-top: 1px solid var(--color-rule-strong);
+}
+
+.studyforge-shell .job-analysis-main-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.studyforge-shell .job-analysis-main-heading > div {
+  min-width: 0;
+}
+
+.studyforge-shell .job-analysis-main-heading > div > span {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--color-ink-muted);
+  font-size: 10px;
+}
+
+.studyforge-shell .job-analysis-boundary {
+  max-width: 74ch;
+  margin: 24px 0 0;
+  padding: 13px 0;
+  color: var(--color-ink-secondary);
+  border-top: 1px solid var(--color-rule);
+  border-bottom: 1px solid var(--color-rule);
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.studyforge-shell .job-analysis-boundary strong {
+  color: var(--color-ink);
+}
+
+.studyforge-shell .job-analysis-form {
+  display: grid;
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.studyforge-shell .job-analysis-form > label {
+  display: grid;
+  min-width: 0;
+  gap: 7px;
+  color: var(--color-ink-secondary);
+  font-size: 12px;
+  font-weight: 760;
+}
+
+.studyforge-shell .job-analysis-form input,
+.studyforge-shell .job-analysis-form textarea {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  font-weight: 500;
+}
+
+.studyforge-shell .job-analysis-form textarea {
+  min-height: 230px;
+  resize: vertical;
+  line-height: 1.7;
+}
+
+.studyforge-shell .job-analysis-form-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.studyforge-shell .job-analysis-form-footer > span {
+  color: var(--color-ink-muted);
+  font-size: 11px;
+}
+
+.studyforge-shell .job-readiness-result {
+  margin-top: 26px;
+  border-top: 1px solid var(--color-rule-strong);
+}
+
+.studyforge-shell .job-readiness-summary {
+  padding: 24px;
+  color: var(--color-paper);
+  background: var(--color-structure);
+}
+
+.studyforge-shell .job-readiness-summary h3 {
+  max-width: 30ch;
+  margin: 0;
+  color: var(--color-paper);
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2.4vw, 27px);
+  line-height: 1.25;
+}
+
+.studyforge-shell .job-readiness-summary p {
+  max-width: 65ch;
+  margin: 8px 0 0;
+  color: color-mix(in oklch, var(--color-paper), var(--color-structure) 24%);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.studyforge-shell .job-readiness-section {
+  padding: 26px 0;
+  border-bottom: 1px solid var(--color-rule-strong);
+}
+
+.studyforge-shell .job-readiness-section-heading h4 {
+  margin: 0;
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: 17px;
+}
+
+.studyforge-shell .job-readiness-section-heading p {
+  max-width: 68ch;
+  margin: 6px 0 0;
+  color: var(--color-ink-muted);
+  font-size: 11px;
+  line-height: 1.65;
+}
+
+.studyforge-shell .job-requirement-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.studyforge-shell .job-requirement-list li {
+  padding: 7px 10px;
+  color: var(--color-structure-2);
+  border: 1px solid var(--color-rule-strong);
+  border-radius: 4px;
+  background: var(--color-paper-2);
+  font-size: 11px;
+  font-weight: 760;
+}
+
+.studyforge-shell .job-evidence-list,
+.studyforge-shell .job-gap-list {
+  margin-top: 18px;
+  border-top: 1px solid var(--color-rule);
+}
+
+.studyforge-shell .job-evidence-row {
+  display: grid;
+  grid-template-columns: minmax(170px, .72fr) minmax(0, 1.3fr);
+  align-items: center;
+  gap: 24px;
+  padding: 17px 0;
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.studyforge-shell .job-evidence-row > div {
+  min-width: 0;
+}
+
+.studyforge-shell .job-evidence-row span {
+  display: block;
+  color: var(--color-ink-muted);
+  font-size: 9px;
+}
+
+.studyforge-shell .job-evidence-row strong {
+  display: block;
+  margin-top: 3px;
+  color: var(--color-ink);
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+.studyforge-shell .job-evidence-row p,
+.studyforge-shell .job-gap-list p,
+.studyforge-shell .job-readiness-empty,
+.studyforge-shell .job-next-list {
+  margin: 0;
+  color: var(--color-ink-secondary);
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.studyforge-shell .job-gap-list article {
+  display: grid;
+  grid-template-columns: minmax(130px, .42fr) minmax(0, 1.5fr);
+  gap: 24px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.studyforge-shell .job-gap-list strong {
+  color: var(--color-ink);
+  font-size: 13px;
+}
+
+.studyforge-shell .job-readiness-empty {
+  margin-top: 18px;
+  padding: 18px 0;
+  color: var(--color-ink-muted);
+  border-top: 1px solid var(--color-rule);
+}
+
+.studyforge-shell .job-next-list {
+  display: grid;
+  gap: 8px;
+  margin-top: 16px;
+  padding-left: 20px;
+}
+
+.studyforge-shell .job-analysis-method {
+  background: var(--color-paper-2);
+}
+
+.studyforge-shell .job-analysis-method > summary:not(.sf-button):not(.primary-button):not(.secondary-button):not(.ghost-button):not(.text-button):not(.danger-button) {
+  min-height: 52px;
+  padding: 8px 14px;
+  color: var(--color-ink-secondary);
+  font-size: 11px;
+  font-weight: 760;
+}
+
+.studyforge-shell .job-analysis-method > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.studyforge-shell .job-analysis-method > summary:not(.sf-button):not(.primary-button):not(.secondary-button):not(.ghost-button):not(.text-button):not(.danger-button)::after {
+  color: var(--color-ink-muted);
+  font-size: 9px;
+  font-weight: 600;
+}
+
+.studyforge-shell .job-analysis-method > summary::after {
+  content: "展开";
+}
+
+.studyforge-shell .job-analysis-method[open] > summary::after {
+  content: "收起";
+}
+
+.studyforge-shell .job-analysis-method p {
+  max-width: 72ch;
+  margin: 0;
+  padding: 0 14px 16px;
+  color: var(--color-ink-muted);
+  font-size: 11px;
+  line-height: 1.65;
+}
+
+.studyforge-shell .job-analysis-confirm {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 26px;
+  padding: 18px;
+  border: 1px solid var(--color-accent);
+  border-radius: 8px;
+  background: color-mix(in oklch, var(--color-paper), var(--color-accent) 10%);
+}
+
+.studyforge-shell .job-analysis-confirm p {
+  max-width: 56ch;
+  margin: 0;
+  color: var(--color-ink-secondary);
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.studyforge-shell .job-analysis-confirm strong {
+  color: var(--color-ink);
+}
+
+@media (max-width: 860px) {
+  .studyforge-shell .job-analysis-heading {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .studyforge-shell .job-readiness-desk {
+    grid-template-areas: "main" "archive";
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .studyforge-shell .job-analysis-archive {
+    border-top: 1px solid var(--color-rule-strong);
+    border-right: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .studyforge-shell .job-analysis-main-heading,
+  .studyforge-shell .job-analysis-form-footer,
+  .studyforge-shell .job-analysis-confirm {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .studyforge-shell .job-analysis-main-heading .ghost-button,
+  .studyforge-shell .job-analysis-form-footer .primary-button,
+  .studyforge-shell .job-analysis-confirm .primary-button {
+    width: 100%;
+  }
+
+  .studyforge-shell .job-evidence-row,
+  .studyforge-shell .job-gap-list article {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 7px;
+  }
+}

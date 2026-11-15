@@ -1,0 +1,271 @@
+/* Hallmark · pre-emit critique: P5 H5 E5 S5 R5 V5 · macrostructure: Desktop Workstation / Open Sections
+ * tone: calm operate · anchor hue: campus-blue · shared interaction and section hierarchy
+ */
+
+.studyforge-shell {
+  --field-border: color-mix(in oklch, var(--border-strong) 74%, var(--border-neutral));
+  --field-border-hover: color-mix(in oklch, var(--focus-border) 42%, var(--border-strong));
+  --section-wash: color-mix(in oklch, var(--color-paper-2) 58%, transparent);
+}
+
+.studyforge-shell ::selection {
+  color: var(--color-ink);
+  background: color-mix(in oklch, var(--color-accent) 42%, transparent);
+}
+
+/* Field primitive: pointer focus uses the boundary; browser focus-visible owns the ring. */
+.studyforge-shell .sf-field:not([type="checkbox"]):not([type="radio"]) {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: var(--sf-field-min-height, var(--control-height-default));
+  padding: var(--space-2) var(--space-3);
+  color: var(--text-primary);
+  background: var(--surface-control);
+  border: var(--rule-thin) solid var(--field-border);
+  border-radius: var(--radius-field);
+  box-shadow: none;
+  caret-color: var(--focus-border);
+  font: inherit;
+  transition:
+    border-color var(--motion-fast) var(--ease-out),
+    background-color var(--motion-fast) var(--ease-out);
+}
+
+.studyforge-shell textarea.sf-field {
+  --sf-field-min-height: var(--sf-field-content-min-height, var(--control-height-touch));
+  resize: var(--sf-field-resize, vertical);
+}
+.studyforge-shell select.sf-field { cursor: pointer; }
+.studyforge-shell :is(input, select).sf-field:not([type="checkbox"]):not([type="radio"]) {
+  height: var(--control-height-default);
+  line-height: 1.2;
+}
+.studyforge-shell .sf-field::placeholder { color: var(--text-muted); opacity: 1; }
+
+.studyforge-shell .sf-field:hover:not(:disabled) {
+  border-color: var(--field-border-hover);
+}
+
+.studyforge-shell .sf-field:focus {
+  border-color: var(--focus-border);
+  outline: 0 solid transparent;
+  box-shadow: none;
+}
+
+.studyforge-shell .sf-field:focus-visible {
+  border-color: var(--focus-border);
+  outline: var(--rule-strong) solid var(--focus-border);
+  outline-offset: var(--rule-strong);
+  box-shadow: none;
+  transition: none;
+}
+
+/* CompositeField: the wrapper is the only visible focus owner. */
+.studyforge-shell .sf-composite-field {
+  box-sizing: border-box;
+  height: auto;
+  min-height: var(--control-height-default);
+  border: var(--rule-thin) solid var(--field-border);
+  border-radius: var(--radius-field);
+  background: var(--surface-control);
+  outline: 0 solid transparent;
+  box-shadow: none;
+  transition:
+    border-color var(--motion-fast) var(--ease-out),
+    background-color var(--motion-fast) var(--ease-out);
+}
+
+.studyforge-shell .sf-composite-field:hover:not(:focus-within) { border-color: var(--field-border-hover); }
+.studyforge-shell .sf-composite-field:focus-within {
+  border-color: var(--focus-border);
+  box-shadow: none;
+  transition: none;
+}
+
+.studyforge-shell .sf-composite-field:has(:focus-visible) {
+  outline: var(--rule-strong) solid var(--focus-border);
+  outline-offset: var(--rule-strong);
+}
+
+.studyforge-shell .sf-composite-field .sf-field:not([type="checkbox"]):not([type="radio"]) {
+  min-width: 0;
+  background: transparent;
+  border-color: transparent;
+  border-radius: 0;
+  outline: 0 solid transparent;
+  box-shadow: none;
+}
+
+.studyforge-shell .sf-composite-field > .sf-button {
+  align-self: stretch;
+  border-width: 0 0 0 var(--rule-thin);
+  border-radius: 0;
+}
+
+.studyforge-shell .sf-composite-field .sf-button:focus-visible {
+  outline: 0 solid transparent;
+  box-shadow: none;
+}
+
+.studyforge-shell .sf-field:disabled,
+.studyforge-shell .sf-composite-field:has(.sf-field:disabled) {
+  cursor: not-allowed;
+  opacity: 0.58;
+}
+
+.studyforge-shell .sf-field[aria-invalid="true"] {
+  border-color: var(--status-error);
+}
+
+/* Button primitive and legacy semantic aliases share one geometry/state owner. */
+.studyforge-shell :is(.sf-button, .primary-button, .secondary-button, .ghost-button, .text-button, .danger-button) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: var(--control-height-default);
+  padding: 0 var(--sf-button-padding-inline, var(--space-4));
+  border: var(--rule-thin) solid transparent;
+  border-radius: var(--radius-field);
+  outline: 0 solid transparent;
+  box-shadow: none;
+  font: 700 var(--text-sm)/1 var(--font-body);
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    color var(--motion-fast) var(--ease-out),
+    background-color var(--motion-fast) var(--ease-out),
+    border-color var(--motion-fast) var(--ease-out),
+    transform var(--motion-fast) var(--ease-out);
+}
+
+.studyforge-shell :is(.sf-button--primary, .primary-button) {
+  color: var(--action-on-primary);
+  background: var(--action-primary);
+  border-color: var(--action-primary);
+}
+.studyforge-shell :is(.sf-button--primary, .primary-button):hover:not(:disabled) {
+  color: var(--action-on-primary);
+  background: var(--action-primary-hover);
+  border-color: var(--action-primary-hover);
+}
+
+.studyforge-shell :is(.sf-button--secondary, .secondary-button, .ghost-button) {
+  color: var(--text-primary);
+  background: var(--surface-control);
+  border-color: var(--border-strong);
+}
+.studyforge-shell :is(.sf-button--secondary, .secondary-button, .ghost-button):hover:not(:disabled) {
+  color: var(--action-primary);
+  background: var(--surface-subtle);
+  border-color: var(--field-border-hover);
+}
+
+.studyforge-shell :is(.sf-button--tertiary, .text-button) {
+  color: var(--action-primary);
+  background: transparent;
+  border-color: transparent;
+}
+.studyforge-shell :is(.sf-button--tertiary, .text-button):hover:not(:disabled) {
+  color: var(--action-primary-hover);
+  background: var(--surface-subtle);
+}
+
+.studyforge-shell :is(.sf-button--destructive, .danger-button) {
+  color: var(--status-error);
+  background: transparent;
+  border-color: color-mix(in oklch, var(--status-error) 54%, var(--border-neutral));
+}
+.studyforge-shell :is(.sf-button--destructive, .danger-button):hover:not(:disabled) {
+  color: var(--action-on-primary);
+  background: var(--status-error);
+  border-color: var(--status-error);
+}
+
+.studyforge-shell .sf-button--icon {
+  height: var(--control-height-default);
+  width: var(--control-height-default);
+  min-width: var(--control-height-default);
+  padding: 0;
+}
+.studyforge-shell .sf-button--compact { min-height: var(--control-height-compact); }
+.studyforge-shell .sf-button--touch { min-height: var(--control-height-touch); }
+
+.studyforge-shell :is(.sf-button, .primary-button, .secondary-button, .ghost-button, .text-button, .danger-button):active:not(:disabled) {
+  transform: translateY(1px);
+}
+.studyforge-shell :is(.sf-button, .primary-button, .secondary-button, .ghost-button, .text-button, .danger-button):focus {
+  outline: 0 solid transparent;
+  box-shadow: none;
+}
+.studyforge-shell :is(.sf-button, .primary-button, .secondary-button, .ghost-button, .text-button, .danger-button):focus-visible {
+  outline: var(--rule-strong) solid var(--focus-border);
+  outline-offset: var(--rule-strong);
+  box-shadow: none;
+  transition: none;
+}
+.studyforge-shell :is(.sf-button, .primary-button, .secondary-button, .ghost-button, .text-button, .danger-button):disabled {
+  color: var(--text-muted);
+  background: var(--surface-layer-muted);
+  border-color: var(--border-neutral);
+  box-shadow: none;
+  opacity: 0.64;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Passive status is deliberately not button-shaped or interactive. */
+.studyforge-shell .sf-status-cluster:not(.top-status-cluster) {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--text-muted);
+}
+.studyforge-shell .sf-status-text {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 0;
+  padding: 0;
+  color: var(--text-muted);
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  font: 600 var(--text-metadata)/1.4 var(--font-body);
+  white-space: nowrap;
+  cursor: default;
+}
+.studyforge-shell .sf-status-text > i {
+  flex: 0 0 auto;
+  width: 7px;
+  height: 7px;
+  background: currentColor;
+  border-radius: 50%;
+  box-shadow: none;
+}
+.studyforge-shell .sf-status-text:is(.online, .available) { color: var(--status-success); }
+.studyforge-shell .sf-status-text:is(.offline, .unavailable) { color: var(--text-muted); }
+.studyforge-shell .sf-status-text:is(.warning, .degraded) { color: var(--status-warning); }
+.studyforge-shell .sf-status-text.error { color: var(--status-error); }
+.studyforge-shell .sf-status-text.neutral { color: var(--text-muted); }
+
+@media (prefers-reduced-motion: reduce) {
+  .studyforge-shell :is(.sf-field, .sf-composite-field, .sf-button, .primary-button, .secondary-button, .ghost-button, .text-button, .danger-button) {
+    transition-duration: 0.01ms;
+  }
+}
+
+@media (max-width: 40rem) {
+  .studyforge-shell .sf-field:not([type="checkbox"]):not([type="radio"]) {
+    min-height: var(--sf-field-min-height, var(--control-height-touch));
+  }
+  .studyforge-shell :is(.sf-button, .primary-button, .secondary-button, .ghost-button, .text-button, .danger-button) {
+    min-height: var(--control-height-touch);
+  }
+  .studyforge-shell .sf-button--icon {
+    height: var(--control-height-touch);
+    width: var(--control-height-touch);
+    min-width: var(--control-height-touch);
+  }
+}

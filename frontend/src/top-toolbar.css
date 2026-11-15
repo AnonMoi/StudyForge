@@ -1,0 +1,179 @@
+/* Canonical TopToolbar composition authority.
+ * Phase 1 primitives continue to own control and status visual identity.
+ * Page identity typography remains intentionally conservative until Phase 2B.4.
+ */
+
+.studyforge-shell .topbar {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-shell-toolbar);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  width: 100%;
+  max-width: none;
+  min-height: 76px;
+  margin: 0;
+  padding: 8px clamp(20px, 3.4vw, 52px);
+  border: 0;
+  border-bottom: var(--rule-thin) solid var(--color-rule);
+  background: color-mix(in oklch, var(--color-paper) 96%, transparent);
+  backdrop-filter: blur(14px);
+}
+
+.studyforge-shell .topbar-heading {
+  display: flex;
+  flex: 0 1 auto;
+  align-items: center;
+  gap: var(--space-xs);
+  width: auto;
+  min-width: 0;
+}
+
+.studyforge-shell .topbar .mobile-nav-toggle {
+  display: none;
+  flex: 0 0 auto;
+}
+
+.studyforge-shell .page-identity {
+  min-width: 0;
+}
+
+.studyforge-shell .page-identity span {
+  display: block;
+  margin-bottom: 1px;
+  color: var(--color-ink-muted);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.studyforge-shell .page-identity .toolbar-route-title {
+  display: block;
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 760;
+  line-height: 1.1;
+  letter-spacing: -.02em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.studyforge-shell .topbar-heading .toolbar-route-title::after {
+  display: none;
+}
+
+.studyforge-shell .top-actions {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-2xs);
+  width: auto;
+  min-width: 0;
+  margin-left: auto;
+}
+
+.studyforge-shell .topbar .global-search {
+  display: flex;
+  flex: 0 1 clamp(14rem, 28vw, 22rem);
+  width: clamp(14rem, 28vw, 22rem);
+  min-width: 0;
+  gap: 0;
+}
+
+.studyforge-shell .top-status-cluster {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.studyforge-shell .topbar .top-model-status-item {
+  display: flex;
+  align-items: center;
+  padding-inline-start: var(--space-xs);
+  border-inline-start: var(--rule-thin) solid var(--color-rule);
+}
+
+.studyforge-shell .topbar .export-menu {
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.studyforge-shell .topbar .top-agent-entry {
+  flex: 0 1 auto;
+  overflow: visible;
+}
+
+.studyforge-shell .topbar .top-agent-entry .anna-art.face {
+  flex: 0 0 auto;
+  border: var(--rule-thin) solid color-mix(in oklch, var(--color-hero-purple) 55%, var(--color-rule));
+  border-radius: 50%;
+}
+
+/* Medium desktop: keep one row, then compress secondary slots. */
+@media (max-width: 82.5rem) {
+  .studyforge-shell .top-status-cluster {
+    display: none;
+  }
+
+  .studyforge-shell .topbar .top-agent-entry > span {
+    display: none;
+  }
+
+}
+
+/* Compact desktop: remove secondary labels before reducing the search slot. */
+@media (max-width: 70rem) {
+  .studyforge-shell .page-identity span,
+  .studyforge-shell .topbar .export-menu > summary > span {
+    display: none;
+  }
+}
+
+/* Shell mobile: navigation action appears and search leaves the toolbar row. */
+@media (max-width: 53.75rem) {
+  .studyforge-shell .topbar {
+    gap: var(--space-xs);
+    padding-inline: 16px;
+  }
+
+  .studyforge-shell .topbar .mobile-nav-toggle {
+    display: inline-flex;
+  }
+
+  .studyforge-shell .topbar .global-search {
+    display: none;
+  }
+
+  .studyforge-shell .page-identity .toolbar-route-title {
+    font-size: var(--text-md);
+  }
+}
+
+/* Narrow mobile: retain only identity and essential actions. */
+@media (max-width: 40rem) {
+  .studyforge-shell .topbar {
+    min-height: 68px;
+  }
+
+  .studyforge-shell .topbar .export-menu {
+    display: none;
+  }
+
+  .studyforge-shell .page-identity .toolbar-route-title {
+    font-size: 20px;
+  }
+
+  .studyforge-shell .top-actions {
+    gap: var(--space-3xs);
+  }
+
+}

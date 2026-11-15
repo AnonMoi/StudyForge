@@ -1,0 +1,76 @@
+/* Canonical PageHeader typography and composition authority.
+ * PageContainer owns outer width/gutter; Phase 1 primitives own control skin.
+ */
+
+.studyforge-shell .sf-page-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: var(--space-lg);
+  min-width: 0;
+  margin: 0 0 var(--space-lg);
+}
+
+.studyforge-shell .sf-page-header__identity {
+  min-width: 0;
+  max-width: 72ch;
+}
+
+.studyforge-shell .sf-page-header__metadata {
+  margin: 0 0 var(--space-2xs);
+  color: var(--text-muted);
+  font: 700 var(--text-metadata)/1.5 var(--font-body);
+}
+
+.studyforge-shell .sf-page-header__title {
+  margin: 0;
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-size: var(--text-page);
+  font-weight: 760;
+  line-height: 1.15;
+  letter-spacing: -.025em;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+.studyforge-shell .sf-page-header__description {
+  max-width: 66ch;
+  margin: var(--space-2xs) 0 0;
+  color: var(--text-secondary);
+  font: 400 var(--text-body)/1.65 var(--font-body);
+}
+
+.studyforge-shell .sf-page-header__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: var(--space-xs);
+  min-width: 0;
+}
+
+.studyforge-shell .sf-page-header--reading {
+  margin-bottom: var(--space-md);
+}
+
+.studyforge-shell .sf-page-header--reading .sf-page-header__identity {
+  max-width: 60ch;
+}
+
+.studyforge-shell .sf-page-header--reading .sf-page-header__title {
+  font-weight: 700;
+}
+
+@media (max-width: 40rem) {
+  .studyforge-shell .sf-page-header {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
+  }
+
+  .studyforge-shell .sf-page-header__actions {
+    justify-content: flex-start;
+    width: 100%;
+  }
+}

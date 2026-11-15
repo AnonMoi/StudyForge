@@ -1,0 +1,94 @@
+html{min-height:100%;background:var(--color-paper)}
+html,body{color:var(--color-ink);background:var(--color-paper);font-family:var(--font-body);font-size:var(--text-body);margin:0;line-height:1.55;overflow-x:clip}
+body,#root{min-height:100dvh}
+body{min-width:320px;background-image:none}
+button:not(.sf-button):not(.primary-button):not(.secondary-button):not(.ghost-button):not(.text-button):not(.danger-button),input,textarea,select{font:inherit}
+button,summary,[role=button]{-webkit-tap-highlight-color:transparent;white-space:nowrap}
+.sr-only{clip:rect(0, 0, 0, 0);white-space:nowrap;border:0;width:1px;height:1px;margin:-1px;padding:0;position:absolute;overflow:hidden}
+.studyforge-shell{--navigation-width:296px;min-height:100dvh;color:var(--color-ink);background:var(--color-paper);display:flex}
+.studyforge-shell.sidebar-is-compact{--navigation-width:76px}
+.studyforge-shell .sidebar{--navigation-surface:var(--structure-primary);--navigation-rail-surface:color-mix(in oklch,var(--structure-primary),var(--text-primary) 12%);--navigation-ink:var(--action-on-primary);--navigation-ink-muted:color-mix(in oklch,var(--action-on-primary),var(--structure-primary) 28%);--navigation-rule:color-mix(in oklch,var(--structure-primary),var(--action-on-primary) 16%);z-index:var(--z-shell-navigation);width:var(--navigation-width);min-width:0;color:var(--navigation-ink);background:var(--navigation-surface);border:0;border-right:1px solid var(--navigation-rule);box-shadow:none;grid-template-columns:76px 220px;padding:0;display:grid;position:fixed;inset:0 auto 0 0;overflow:hidden;transition:width var(--motion-standard) var(--ease-out),transform var(--motion-standard) var(--ease-out),box-shadow var(--motion-fast) ease}
+.studyforge-shell .domain-rail{background:var(--navigation-rail-surface);border-right:1px solid var(--navigation-rule);grid-template-rows:84px 1fr 72px;width:76px;min-height:100dvh;display:grid}
+.studyforge-shell .domain-rail .brand{border-bottom:1px solid var(--navigation-rule);place-items:center;width:auto;min-height:84px;margin:0;padding:0;display:grid}
+.studyforge-shell .brand-mark{width:36px;height:36px;color:var(--action-on-accent);background:var(--action-accent);border:1px solid var(--action-accent-hover);box-shadow:4px 4px 0 color-mix(in oklch,var(--navigation-surface),var(--text-primary) 20%);font-family:var(--font-display);border-radius:var(--radius-field);place-items:center;font-weight:900;display:grid}
+.studyforge-shell .domain-rail nav{align-content:start;gap:var(--space-1);min-height:0;padding:var(--space-3) var(--space-2);display:grid;overflow-y:auto;overscroll-behavior:contain;scrollbar-color:color-mix(in oklch,var(--navigation-ink),transparent 66%) transparent}
+.studyforge-shell .domain-button,.studyforge-shell .domain-settings{width:60px;min-height:60px;color:var(--navigation-ink-muted);cursor:pointer;background:0 0;border:1px solid transparent;border-radius:var(--radius-field);place-items:center;gap:var(--space-1);padding:var(--space-2) var(--space-1);display:grid;position:relative}
+.studyforge-shell .domain-button span{letter-spacing:.08em;font-size:var(--text-metadata);font-weight:700}
+.studyforge-shell .domain-button .nav-glyph,.studyforge-shell .domain-settings .nav-glyph{width:19px;height:19px}
+.studyforge-shell .domain-button:hover,.studyforge-shell .domain-settings:hover{color:var(--navigation-ink);background:color-mix(in oklch,var(--navigation-surface),var(--navigation-ink) 9%);border-color:var(--navigation-rule)}
+.studyforge-shell .domain-button[aria-pressed="true"]{color:var(--action-accent);background:color-mix(in oklch,var(--navigation-surface),var(--text-primary) 9%);border-color:color-mix(in oklch,var(--action-accent),var(--navigation-surface) 58%)}
+.studyforge-shell .domain-button[aria-current="location"]:before{content:"";background:var(--action-accent);width:3px;height:28px;position:absolute;left:-9px}
+.studyforge-shell .domain-settings{align-self:center;margin:0 8px}
+.studyforge-shell .domain-menu{background:var(--navigation-surface);grid-template-rows:auto 1fr auto;min-width:220px;min-height:100dvh;display:grid}
+.studyforge-shell .domain-menu>header{border-bottom:1px solid var(--navigation-rule);justify-content:space-between;align-items:flex-start;gap:var(--space-3);min-height:84px;padding:var(--space-4) var(--space-3) var(--space-3) var(--space-4);display:flex}
+.studyforge-shell .domain-menu>header>div{min-width:0;flex:1}
+.studyforge-shell .domain-menu>header strong{color:var(--navigation-ink);font-family:var(--font-display);font-size:var(--text-section);display:block}
+.studyforge-shell .domain-menu>header p{max-width:150px;color:var(--navigation-ink-muted);margin:var(--space-1) 0 0;font-size:var(--text-metadata);line-height:1.45}
+.studyforge-shell .sidebar-pin{flex:0 0 auto;margin:0}
+.studyforge-shell .sidebar-pin .nav-glyph{transition:transform var(--motion-fast) var(--ease-out)}
+.studyforge-shell .sidebar-pin[aria-pressed="true"] .nav-glyph{transform:rotate(180deg)}
+.studyforge-shell .domain-menu .navigation-mobile-close{display:none;flex:0 0 auto;margin:0}
+.studyforge-shell .navigation-mobile-close .nav-glyph{transform:rotate(180deg)}
+.studyforge-shell .domain-menu>nav{align-content:start;gap:var(--space-1);min-height:0;padding:var(--space-3);display:grid;overflow-y:auto;overscroll-behavior:contain;scrollbar-color:color-mix(in oklch,var(--navigation-ink),transparent 66%) transparent}
+.studyforge-shell .domain-menu .nav-item{width:100%;min-height:44px;color:var(--navigation-ink-muted);text-align:left;cursor:pointer;background:transparent;border:1px solid transparent;border-radius:var(--radius-field);justify-content:flex-start;align-items:center;gap:var(--space-3);padding:var(--space-2) var(--space-3);font-size:var(--text-sm);display:flex;position:relative}
+.studyforge-shell .domain-menu .nav-item span{opacity:1;visibility:visible;width:auto;overflow:visible}
+.studyforge-shell .domain-menu .nav-glyph{width:19px;height:19px;flex:0 0 19px}
+.studyforge-shell .domain-menu .nav-item:hover{color:var(--navigation-ink);background:color-mix(in oklch,var(--navigation-surface),var(--navigation-ink) 8%);border-color:var(--navigation-rule)}
+.studyforge-shell .domain-menu .nav-item[aria-current="page"]{color:var(--navigation-ink);background:color-mix(in oklch,var(--navigation-surface),var(--navigation-ink) 10%);font-weight:800}
+.studyforge-shell .domain-menu .nav-item[aria-current="page"]:before{content:"";background:var(--action-accent);border-radius:999px;width:3px;height:24px;position:absolute;left:3px}
+.studyforge-shell .sidebar-bottom{border-top:1px solid var(--navigation-rule);margin:0;padding:var(--space-3) var(--space-4) var(--space-4)}
+.studyforge-shell .privacy{width:auto;color:var(--navigation-ink-muted);opacity:1;visibility:visible;align-items:flex-start;gap:var(--space-2);font-size:var(--text-metadata);display:flex}
+.studyforge-shell .privacy small{color:color-mix(in oklch,var(--navigation-ink),var(--navigation-surface) 37%);margin-top:2px;display:block}
+.studyforge-shell .status-dot{background:var(--status-success);border-radius:50%;flex:none;width:7px;height:7px;margin-top:5px;display:inline-block}
+.studyforge-shell .status-dot.offline{background:var(--status-error)}
+.studyforge-shell .main-content{width:auto;min-width:0;max-width:none;min-height:100dvh;flex:1;margin:0 0 0 var(--navigation-width);background:var(--color-paper);padding:0;position:relative;isolation:isolate;overflow:visible}
+.studyforge-shell .sf-page-container{--page-container-max-width:var(--page-width-fluid);box-sizing:border-box;width:100%;max-width:var(--page-container-max-width);min-width:0;margin-inline:auto;padding:var(--space-md) clamp(20px,3.4vw,52px) 64px}
+.studyforge-shell .sf-page-container--reading{--page-container-max-width:var(--page-width-reading)}
+.studyforge-shell .sf-page-container--work{--page-container-max-width:var(--page-width-work)}
+.studyforge-shell .sf-page-container--wide{--page-container-max-width:var(--page-width-wide)}
+.studyforge-shell .sf-page-container--fluid{--page-container-max-width:var(--page-width-fluid)}
+.studyforge-shell .mobile-nav-backdrop{display:none;background:color-mix(in oklch,var(--text-primary),transparent 38%);backdrop-filter:blur(2px)}
+.studyforge-shell .main-content:before{display:none}
+.studyforge-shell input:not(.sf-field),.studyforge-shell textarea:not(.sf-field),.studyforge-shell select:not(.sf-field){color:var(--color-ink);background:var(--color-surface);border:1px solid var(--color-rule-strong);box-shadow:none;border-radius:2px}
+.studyforge-shell.studyforge-shell .check-box-button{min-width:44px}
+.studyforge-shell :where(button,summary):not(.sf-button):not(.primary-button):not(.secondary-button):not(.ghost-button):not(.text-button):not(.danger-button),.studyforge-shell :where(input:not(.sf-field),textarea:not(.sf-field),select:not(.sf-field),a){outline-offset:1px;outline:2px solid #0000}
+.studyforge-shell :where(button,summary):not(.sf-button):not(.primary-button):not(.secondary-button):not(.ghost-button):not(.text-button):not(.danger-button):focus-visible,.studyforge-shell :where(input:not(.sf-field),textarea:not(.sf-field),select:not(.sf-field),a):focus-visible{outline-color:var(--color-focus)}
+.studyforge-shell :where(button,summary):not(.sf-button):not(.primary-button):not(.secondary-button):not(.ghost-button):not(.text-button):not(.danger-button):active{transform:translateY(1px)}
+.studyforge-shell button:not(.sf-button):not(.primary-button):not(.secondary-button):not(.ghost-button):not(.text-button):not(.danger-button):disabled,.studyforge-shell :where(input:not(.sf-field),textarea:not(.sf-field),select:not(.sf-field)):disabled{opacity:.55;cursor:not-allowed}
+.studyforge-shell .system-menu{position:relative}
+.studyforge-shell summary:not(.sf-button):not(.primary-button):not(.secondary-button):not(.ghost-button):not(.text-button):not(.danger-button){cursor:pointer}
+.studyforge-shell summary{list-style:none}
+.studyforge-shell summary::-webkit-details-marker{display:none}
+.studyforge-shell .system-menu>summary{align-items:center;gap:8px;display:flex}
+.studyforge-shell .system-menu-content,.studyforge-shell .export-menu-content{z-index:var(--z-shell-popover);background:var(--color-surface);border:1px solid var(--color-rule-strong);width:220px;box-shadow:8px 8px 0 color-mix(in oklch, var(--color-structure), transparent 86%);border-radius:2px;padding:8px;position:absolute;top:calc(100% + 8px);right:0}
+.studyforge-shell .system-menu-content p{border-bottom:1px solid var(--color-rule);justify-content:space-between;gap:12px;margin:0;padding:8px;display:flex}
+.studyforge-shell .system-menu-content p strong{font-size:12px}
+.studyforge-shell .system-menu-content p small{color:var(--color-ink-muted)}
+.studyforge-shell .system-menu-content .ghost-button,.studyforge-shell .export-menu-content .ghost-button{text-align:left;justify-content:flex-start;width:100%;margin-top:2px}
+.studyforge-shell .avatar{overflow:hidden}
+.studyforge-shell .notice{max-width:1440px;box-shadow:none;border-radius:2px;margin:0 auto 16px}
+.studyforge-shell .workspace-subtitle,.studyforge-shell small{color:var(--color-ink-muted)}
+.studyforge-shell .task-row{border-bottom:1px solid var(--color-rule)}
+.studyforge-shell .task-add-form>button:not(.sf-button):not(.primary-button):not(.secondary-button):not(.ghost-button):not(.text-button):not(.danger-button){min-height:44px;color:var(--color-accent-ink);background:var(--color-accent);border:1px solid var(--color-accent-hover);border-radius:2px}
+.studyforge-shell .task-add-form>button{min-width:44px}
+.studyforge-shell .check-box-button{min-width:44px;min-height:44px}
+@media (min-width:861px){.studyforge-shell.sidebar-is-compact:not(.sidebar-hover-suppressed) .sidebar:hover,.studyforge-shell.sidebar-is-compact:not(.sidebar-hover-suppressed) .sidebar:focus-within{width:296px;box-shadow:12px 0 28px color-mix(in oklch,var(--navigation-surface),transparent 72%)}
+}
+@media (width<=860px){.studyforge-shell{--navigation-width:0px;flex-direction:column}
+.studyforge-shell .sidebar{width:min(320px,88vw);transition:transform var(--duration-slow) var(--ease-standard);grid-template-columns:72px minmax(0,248px);transform:translate(-105%)}
+.studyforge-shell .sidebar.mobile-open{width:min(320px,88vw);transform:translate(0)}
+.studyforge-shell .mobile-nav-backdrop.visible{display:block;position:fixed;inset:0;z-index:var(--z-shell-mobile-backdrop)}
+.studyforge-shell .domain-rail{width:72px}
+.studyforge-shell .domain-button,.studyforge-shell .domain-settings{width:56px}
+.studyforge-shell .domain-menu{min-width:248px}
+.studyforge-shell .domain-menu .sidebar-pin{display:none}
+.studyforge-shell .domain-menu .navigation-mobile-close{display:inline-flex}
+.studyforge-shell .main-content{margin-left:0}
+.studyforge-shell .sf-page-container{padding-inline:16px}
+}
+@media (width<=640px){.studyforge-shell .system-menu>summary:not(.sf-button):not(.primary-button):not(.secondary-button):not(.ghost-button):not(.text-button):not(.danger-button){padding:0 7px;font-size:0}
+.studyforge-shell .system-menu>summary{width:44px;overflow:hidden}
+.studyforge-shell .system-menu>summary:not(.sf-button):not(.primary-button):not(.secondary-button):not(.ghost-button):not(.text-button):not(.danger-button):after{font-size:12px}
+.studyforge-shell .system-menu>summary:after{content:"态"}
+.studyforge-shell .reminder-actions{align-items:stretch}
+}
