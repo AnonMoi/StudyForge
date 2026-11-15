@@ -29,6 +29,21 @@ def test_task_policy_assigns_local_and_cloud_roles(monkeypatch):
         assert policy["reason"]
 
 
+def test_cloud_only_routes_every_task_to_cloud_and_keeps_high_risk_confirmation(monkeypatch):
+    from app.config import settings
+
+    monkeypatch.setattr(settings, "model_routing_mode", "cloud_only")
+    router = ModelRouter()
+
+    for task_type in ("daily_log", "writing", "unknown_task"):
+        policy = router.task_policy(task_type)
+        assert policy["provider"] == "cloud"
+        assert policy["requires_confirmation"] is False
+    high_policy = router.task_policy("code_review")
+    assert high_policy["provider"] == "cloud"
+    assert high_policy["requires_confirmation"] is True
+
+
 def test_writing_task_uses_cloud_when_enabled(monkeypatch):
     from app.config import settings
 

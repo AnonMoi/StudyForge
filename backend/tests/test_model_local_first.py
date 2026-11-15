@@ -1,4 +1,5 @@
 import httpx
+import pytest
 
 from app.model_routing import ModelResult, ModelRouter
 
@@ -125,6 +126,41 @@ def test_cloud_disabled_medium_task_returns_local_failure_without_upload(monkeyp
     assert result.success is False
     assert result.provider == "ollama"
     assert "local" in (result.error or "").lower()
+
+
+def test_cloud_only_uses_cloud_for_low_risk_task_without_calling_local(monkeypatch):
+    from app.config import settings
+
+    monkeypatch.setattr(settings, "model_routing_mode", "cloud_only")
+    monkeypatch.setattr(settings, "cloud_model_enabled", True)
+    monkeypatch.setattr(settings, "cloud_model_api_key", "SECRET_VALUE")
+    router = ModelRouter()
+    local_calls = []
+    router.local.chat = lambda *args, **kwargs: local_calls.append(args) or pytest.fail("local provider must not be called")
+    router.cloud._post = lambda *args, **kwargs: httpx.Response(200, json={"choices": [{"message": {"content": "云端结果"}}]})
+
+    result = router.run_task("daily_log", "整理今天的学习记录")
+
+    assert result.success is True
+    assert result.provider == "zhiapi"
+    assert result.text == "云端结果"
+    assert local_calls == []
+
+
+def test_cloud_only_does_not_fallback_to_local_when_cloud_unavailable(monkeypatch):
+    from app.config import settings
+
+    monkeypatch.setattr(settings, "model_routing_mode", "cloud_only")
+    monkeypatch.setattr(settings, "cloud_model_enabled", False)
+    monkeypatch.setattr(settings, "cloud_model_api_key", "")
+    router = ModelRouter()
+    router.local.chat = lambda *args, **kwargs: pytest.fail("local provider must not be called")
+
+    result = router.run_task("summarize", "总结这段内容")
+
+    assert result.success is False
+    assert result.provider == "router"
+    assert "cloud" in (result.error or "").lower()
 
 
 def test_high_risk_policy_still_requires_confirmation():

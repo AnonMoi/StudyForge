@@ -379,10 +379,10 @@ class ReportFeedbackRead(ReportFeedbackCreate):
 
 
 class SettingsUpdate(BaseModel):
-    local_model_name: str | None = Field(default=None, min_length=1, max_length=120)
+    local_model_name: str | None = Field(default=None, min_length=0, max_length=120)
     cloud_model_name: str | None = Field(default=None, min_length=1, max_length=120)
     cloud_model_enabled: bool | None = None
-    model_routing_mode: str | None = Field(default=None, pattern="^(local_only|local_first|cloud_confirmed)$")
+    model_routing_mode: str | None = Field(default=None, pattern="^(local_only|local_first|cloud_confirmed|cloud_only)$")
     daily_cloud_call_limit: int | None = Field(default=None, ge=0, le=100000)
     daily_cost_limit: float | None = Field(default=None, ge=0, le=1000000)
     max_tokens_per_request: int | None = Field(default=None, ge=128, le=200000)

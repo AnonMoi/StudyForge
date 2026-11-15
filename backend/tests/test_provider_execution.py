@@ -186,6 +186,46 @@ async def test_ineligible_cloud_paths_emit_no_cloud_started(monkeypatch, block):
     assert result.route_reason == {"disabled": "cloud_disabled", "budget": "cloud_budget_blocked", "privacy": "cloud_privacy_blocked"}[block]
 
 
+@pytest.mark.asyncio
+async def test_cloud_only_stream_starts_cloud_without_local_attempt(monkeypatch):
+    instance = router_with_cloud(monkeypatch)
+    from app.config import settings
+
+    monkeypatch.setattr(settings, "model_routing_mode", "cloud_only")
+    lifecycle = []
+    local_calls = []
+
+    def local_stream(*args, **kwargs):
+        local_calls.append(args)
+        yield "错误的本地结果"
+
+    instance.local.stream_chat = local_stream
+    result = await instance.execute_stream("teaching", "解释事务", turn_id="cloud-only", on_event=lambda event: lifecycle.append(event))
+
+    assert result.success is True
+    assert result.provider == "cloud"
+    assert [event.event for event in lifecycle] == ["cloud_started"]
+    assert [attempt.stage for attempt in result.attempts] == ["cloud"]
+    assert local_calls == []
+
+
+@pytest.mark.asyncio
+async def test_cloud_only_stream_does_not_fallback_to_local_when_cloud_disabled(monkeypatch):
+    instance = router_with_cloud(monkeypatch)
+    from app.config import settings
+
+    monkeypatch.setattr(settings, "model_routing_mode", "cloud_only")
+    instance.cloud = None
+    instance.local.stream_chat = lambda *args, **kwargs: pytest.fail("local provider must not be called")
+
+    result = await instance.execute_stream("teaching", "解释事务", turn_id="cloud-only-disabled")
+
+    assert result.success is False
+    assert result.provider == "router"
+    assert result.route_reason == "cloud_disabled"
+    assert result.attempts == ()
+
+
 def test_completed_and_cancelled_terminal_race_has_exactly_one_winner(tmp_path: Path):
     engine = create_engine(f"sqlite:///{(tmp_path / 'terminal-race.sqlite3').as_posix()}", connect_args={"check_same_thread": False, "timeout": 5})
     Base.metadata.create_all(engine)

@@ -539,6 +539,11 @@ class ModelRouter:
         local_tasks = {"daily_log", "format_note", "summarize", "classify", "flashcards", "file_index"}
         high_tasks = {"code_review", "file_cloud_analysis", "bulk_plan_change"}
         cloud_tasks = {"writing", "learning_plan", "teaching", "teaching_evaluation", "knowledge_analysis"}
+        if settings.model_routing_mode == "cloud_only":
+            if task_type in high_tasks:
+                return {"provider": "cloud", "risk": "high", "requires_confirmation": True, "reason": "已配置为所有任务使用云端；高风险任务仍需确认"}
+            risk = "medium" if task_type in cloud_tasks else "low"
+            return {"provider": "cloud", "risk": risk, "requires_confirmation": False, "reason": "已配置为所有任务直接使用云端"}
         if task_type in high_tasks:
             if settings.model_routing_mode == "local_only":
                 return {"provider": "local", "risk": "high", "requires_confirmation": False, "reason": "已配置为仅使用本地模型"}
@@ -604,7 +609,10 @@ class ModelRouter:
                 return ModelResult(False, None, "router", "none", "cloud model is disabled or not configured")
             if not self._budget_available():
                 return ModelResult(False, None, "router", "none", "cloud budget exceeded")
-            result = self.cloud.chat(task_type, prompt)
+            try:
+                result = self.cloud.chat(task_type, prompt)
+            except Exception as exc:
+                result = ModelResult(False, None, getattr(self.cloud, "provider", "cloud"), settings.cloud_model_name, redact_sensitive(str(exc)), failure_kind="provider_error")
             result.route_reason = policy["reason"]
             self._record(result, task_type, policy["risk"], len(prompt), upgraded=False)
             return result
@@ -655,6 +663,17 @@ class ModelRouter:
         request_cancel = cancellation or ProviderCancellation()
         emit = on_event or (lambda event: None)
         attempts: list[ProviderAttempt] = []
+        if settings.model_routing_mode == "cloud_only":
+            return await self._execute_cloud_stream(
+                task_type,
+                prompt,
+                turn_id=turn_id,
+                policy=policy,
+                request_cancel=request_cancel,
+                emit=emit,
+                monotonic=monotonic,
+                poll_seconds=poll_seconds,
+            )
         local_started_at = datetime.now(timezone.utc)
         local_started_monotonic = monotonic()
         total_seconds = max(0.001, deadline_seconds if deadline_seconds is not None else settings.local_model_timeout_seconds)
@@ -820,10 +839,110 @@ class ModelRouter:
             return ProviderExecutionResult(turn_id, True, cloud_result.text, cloud_result.provider, cloud_result.model_name, cloud_result.route_reason, None, None, tuple(attempts))
         return ProviderExecutionResult(turn_id, False, None, cloud_result.provider, cloud_result.model_name, "cloud_provider_error", cloud_failure_kind or "provider_error", cloud_result.error, tuple(attempts))
 
+    async def _execute_cloud_stream(
+        self,
+        task_type: str,
+        prompt: str,
+        *,
+        turn_id: str,
+        policy: dict[str, Any],
+        request_cancel: ProviderCancellation,
+        emit: Callable[[ProviderLifecycleEvent], None],
+        monotonic: Callable[[], float],
+        poll_seconds: float,
+    ) -> ProviderExecutionResult:
+        """Execute a cloud-only stream without creating a local attempt."""
+        if self.cloud is None:
+            error = "cloud model is disabled or not configured"
+            return ProviderExecutionResult(turn_id, False, None, "router", "none", "cloud_disabled", "unavailable", error, ())
+        if not self._budget_available():
+            error = "cloud budget exceeded"
+            return ProviderExecutionResult(turn_id, False, None, "router", "none", "cloud_budget_blocked", "budget", error, ())
+
+        started_at = datetime.now(timezone.utc)
+        started_monotonic = monotonic()
+        attempt = ProviderAttempt(
+            attempt_id=uuid4().hex,
+            turn_id=turn_id,
+            provider=getattr(self.cloud, "provider", "cloud"),
+            model_name=settings.cloud_model_name,
+            stage="cloud",
+            status="running",
+            failure_kind=None,
+            route_reason="cloud_started",
+            started_at=started_at,
+            finished_at=None,
+            deadline_at=None,
+            elapsed_ms=0,
+        )
+        emit(ProviderLifecycleEvent("cloud_started", attempt))
+        attempt_cancel = ProviderCancellation()
+
+        def call_cloud(cancel_token: ProviderCancellation) -> ModelResult:
+            cloud_chat = self.cloud.chat
+            return cloud_chat(task_type, prompt, cancel_token=cancel_token) if _accepts_cancel_token(cloud_chat) else cloud_chat(task_type, prompt)
+
+        try:
+            outcome = await _run_cancellable_worker(
+                call_cloud,
+                request_cancel=request_cancel,
+                attempt_cancel=attempt_cancel,
+                deadline_monotonic=None,
+                monotonic=monotonic,
+                poll_seconds=poll_seconds,
+            )
+            if outcome.error is not None:
+                raise outcome.error
+            cloud_result = outcome.value
+        except BaseException as exc:
+            failure_kind = normalize_interactive_failure(exc)
+            finished_at = datetime.now(timezone.utc)
+            attempt = replace(
+                attempt,
+                status="cancelled" if failure_kind == "cancelled" else "failed",
+                failure_kind=failure_kind,
+                route_reason="client_cancelled" if failure_kind == "cancelled" else "cloud_provider_error",
+                finished_at=finished_at,
+                elapsed_ms=max(0, int((monotonic() - started_monotonic) * 1000)),
+            )
+            failed = ModelResult(False, None, attempt.provider, attempt.model_name, error="request cancelled" if failure_kind == "cancelled" else redact_sensitive(str(exc)), duration_ms=attempt.elapsed_ms, route_reason=attempt.route_reason, failure_kind=failure_kind)
+            if failure_kind != "cancelled":
+                self._record(failed, task_type, policy.get("risk", "low"), len(prompt), upgraded=False)
+            return ProviderExecutionResult(turn_id, False, None, attempt.provider, attempt.model_name, attempt.route_reason or "cloud_provider_error", failure_kind, failed.error, (attempt,))
+
+        if not isinstance(cloud_result, ModelResult):
+            cloud_result = ModelResult(False, None, attempt.provider, attempt.model_name, error="cloud provider returned invalid result", failure_kind="response_error")
+        failure_kind = None if cloud_result.success and cloud_result.text else (cloud_result.failure_kind or normalize_interactive_failure(cloud_result.error))
+        cloud_result.route_reason = policy.get("reason", "cloud_only") if failure_kind is None else "cloud_provider_error"
+        attempt = replace(
+            attempt,
+            status="succeeded" if failure_kind is None else "failed",
+            failure_kind=failure_kind,
+            route_reason=cloud_result.route_reason,
+            finished_at=datetime.now(timezone.utc),
+            elapsed_ms=max(0, int((monotonic() - started_monotonic) * 1000)),
+        )
+        self._record(cloud_result, task_type, policy.get("risk", "low"), len(prompt), upgraded=False)
+        if cloud_result.success and cloud_result.text:
+            return ProviderExecutionResult(turn_id, True, cloud_result.text, cloud_result.provider, cloud_result.model_name, cloud_result.route_reason, None, None, (attempt,))
+        return ProviderExecutionResult(turn_id, False, None, cloud_result.provider, cloud_result.model_name, cloud_result.route_reason or "cloud_provider_error", failure_kind or "provider_error", cloud_result.error, (attempt,))
+
     def run_structured(self, task_type: str, prompt: str, required_keys: set[str], confirmed: bool = False) -> ModelResult:
         policy = self.task_policy(task_type)
         if policy["requires_confirmation"] and not confirmed:
             return ModelResult(False, None, "router", "none", "cloud confirmation required")
+        if policy["provider"] == "cloud":
+            if self.cloud is None:
+                return ModelResult(False, None, "router", "none", "cloud model is disabled or not configured")
+            if not self._budget_available():
+                return ModelResult(False, None, "router", "none", "cloud budget exceeded")
+            try:
+                result = self.cloud.structured_output(prompt, {"required": sorted(required_keys)})
+            except Exception as exc:
+                result = ModelResult(False, None, getattr(self.cloud, "provider", "cloud"), settings.cloud_model_name, redact_sensitive(str(exc)), failure_kind="provider_error")
+            result.route_reason = policy["reason"]
+            self._record(result, task_type, policy["risk"], len(prompt))
+            return result
         attempts = max(0, settings.model_max_retries) + 1
         result = ModelResult(False, None, "ollama", settings.local_model_name, "local structured output unavailable")
         for attempt in range(attempts):
@@ -894,6 +1013,20 @@ class ModelRouter:
         if cached:
             self._cache.pop(key, None)
         risk = self.classify_risk(raw_text)
+        if settings.model_routing_mode == "cloud_only":
+            if self.cloud is None:
+                return ModelResult(False, None, "router", "none", "cloud model is disabled or not configured", route_reason="cloud_disabled", failure_kind="unavailable")
+            if not self._budget_available():
+                return ModelResult(False, None, "router", "none", "cloud budget exceeded", route_reason="cloud_budget_blocked", failure_kind="budget")
+            try:
+                result = self.cloud.structured_log(raw_text)
+            except Exception as exc:
+                result = ModelResult(False, None, getattr(self.cloud, "provider", "cloud"), settings.cloud_model_name, redact_sensitive(str(exc)), failure_kind="provider_error")
+            result.route_reason = "已配置为所有任务直接使用云端" if result.success else "cloud_provider_error"
+            self._record(result, "daily_log_parse", risk, len(raw_text))
+            if result.success:
+                self._cache[key] = (time.monotonic(), result)
+            return result
         attempts = max(0, settings.model_max_retries) + 1
         result = ModelResult(False, None, "ollama", settings.local_model_name, "local structured output unavailable")
         for attempt in range(attempts):
